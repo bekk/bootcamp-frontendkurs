@@ -2,6 +2,19 @@
     text-align: left;
 }
 
+.center-img p {
+    display: inline-block;
+    width: 200px
+}
+
+.center-img img {
+    width: 100px;
+}
+
+.background-white {
+    background-color: white !important;
+}
+
 .hvr-wobble-horizontal, .hvr-wobble-vertical, .en-knapp{
     padding: 1rem;
     margin: 1rem;

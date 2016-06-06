@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Webutvikling 101</title>
+    <title>Frontendkurs</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/bekk/remark/master/dist/bekk.css">
     <link rel="stylesheet" href="slides.css">
   </head>
@@ -11,32 +11,193 @@
 
 exclude:true
 class: front-page
-  # Webutvikling 101
+  # Frontendkurs
   ## NTNU
 
   <span class="today-date"></span>
 ---
 class: front-page
-  # Webutvikling 101
-  ## UiO
+  # Frontendkurs
+  ## Sommerstudenter
 
   <span class="today-date"></span>
 
 ---
-#Webutvikling 101
+
+class: middle center center-img background-white
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/sublime-logo.png)
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/git-logo.png)
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/chrome-logo.jpeg)
+
+---
+
+#Frontendkurs
 
 ##Repo
 <div style="font-size: 2em">
-  <a href="https://github.com/bekk/webutvikling101">http://tiny.cc/bekkweb101</a>
+  <a href="https://github.com/bekk/sommerstudenter-frontendkurs">http://tiny.cc/bekksommerkurs</a>
 </div>
 <br>
 <br>
 <div style="font-size: 2em">
-  <a href="https://github.com/bekk/webutvikling101">github/bekk/webutvikling101</a>
+  <a href="https://github.com/bekk/sommerstudenter-frontendkurs">github/bekk/sommerstudenter-frontendkurs</a>
 </div>
 
+---
+
+class: fullscreen
+
+![HTML](resources/prosjektstruktur.png)
+
+<div class="overlay loud" style="top: 55%">
+<p>
+    Prosjektstruktur
+    <small style="display:block;">Presentasjon, oppgaver og løsninger</small>
+</p>
+</div>
 
 ---
+class: center middle red
+
+![mac_pc](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/mac_pc.png)
+
+# Web: write once, run anywhere
+
+???
+
+Mer og mer av appene vi bruker er nå en webapplikasjon, dvs en webside med masse javascript og ajax som får ting til å skje.
+
+Før vi knaller igang med teknologien er det hensiktsmessig å snakke litt mer om hvor weben kommer fra for å forstå hvorfor ting er som det er.
+
+---
+class: center middle background-white
+
+![mac_pc](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/github-repos.png)
+
+???
+
+En annen ting som har bidratt til den store utviklingen på web er JavaScript - webens eget programmeringspråk.
+Vi skal gå mer i detalj i dette senere idag, men i korte trekk har språket veldig få begrensninger og er veldig utvidbart.
+Dette har ført til en haug med rammeverk, nye måter å tenke på og stor innovasjon.
+Som vi ser JavaScript by far det mest populære språket på f.eks GitHub.
+
+Tar man samme statistikk fra StackOverflow får vi samme resultat.
+
+---
+
+class: middle center red
+
+![browsers](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browsers.png)
+
+## Nettleserstøtte og standardisering
+
+.source[http://en.wikipedia.org/wiki/History_of_the_web_browser ]
+
+???
+
+- Mozilla Firefox; Lansert i 2002 som en spinoff av hele Mozilla-prosjektet
+- Opera: Kom i 1996, noe populær på mobil, men ikke særlig mye i bruk på desktop
+- Chrome: Kom i 2008
+
+---
+
+class: fullscreen middle
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_uglysite_ie.jpg)
+
+---
+
+class: middle center
+
+# Graceful degradation
+
+???
+
+Problemer med kompabilitet kan løses på mange måter...
+
+---
+
+class: fullscreen middle inverse
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_noflash.jpeg)
+
+---
+
+class: middle
+
+&nbsp;
+
+    <noscript>
+      Nettleseren støtter ikke JavaScript. Synd for deg. Snakkes!
+    </noscript>
+
+---
+
+class: middle
+
+&nbsp;
+
+    <script src="fancy-pants-supercool-flyout-menu.js"></script>
+
+    <noscript>
+      <ul>
+          <li>
+              <a href="side1.htm">Side 1</a>
+          </li>
+          <li>
+              <a href="side2.htm">Side 2</a>
+          </li>
+      </ul>
+    </noscript>
+
+---
+
+class: middle center
+
+# Progressive enhancement
+
+???
+
+Feature detection med JS, f.eks. modernizr
+
+---
+
+class: fullscreen middle
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_escalator.jpeg)
+<div class="overlay loud" style="top:50%">
+  <p>
+      An escalator can never break, <br />
+      it can only become stairs.
+      <small style="display:block;">Mitch Hedberg</small>
+  </p>
+</div>
+
+.source[http://flic.kr/p/wzHU]
+
+---
+class: fullscreen middle
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_moped.jpeg)
+
+<div class="overlay loud" style="top:71%">
+  <p>
+      Moped: Pedaler &amp; motor
+      <small style="display:block;">Progressive enhancement</small>
+  </p>
+</div>
+
+.source[http://flic.kr/p/4W4qfx]
+
+---
+class: middle center
+
+# Men hva består en nettside av?
+
+---
+
 class: middle center
 
 ![HTML](resources/html.jpg)
@@ -109,10 +270,6 @@ class: fullscreen
 
 ---
 class: center middle
-<img src="resources/apple-pages.png"/>
-.source[https://www.icloud.com/#pages]
----
-class: center middle
 <img src="resources/google-maps.png"/>
 .source[https://maps.google.com/]
 ---
@@ -158,6 +315,52 @@ Kun elementer som ikke **kan** ha innhold avsluttes dirrekte
       <tag></tag>
     </tag>
   </tag>
+```
+
+---
+class: center middle
+
+# Semantikk
+
+## html, body, div, span, h1, a, p, ... wtf
+
+Semantikk betyr at typen til en HTML-tagg sier noe om hva slags innhold den har.
+
+???
+
+Viktig for f.eks Universell Utforming og søkemotorer
+
+---
+
+# HTML5
+
+```html
+    <div id="header">…</div>
+
+    <div class="section"></div>
+
+    <div id="navigation">…</div>
+
+    <div class="article"></div>
+
+    <div id="sidebar"></div>
+```
+---
+
+# HTML5
+
+Mer semantisk riktig HTML
+```html
+    <div id="header">…</div> &mdash; <header>…</header>
+
+    <div class="section"></div> &mdash; <section>…</section>
+
+    <div id="navigation">…</div> &mdash; <nav>…</nav>
+
+    <div class="article"></div> &mdash; <article>…</article>
+
+    <div id="sidebar"></div> &mdash; <aside>…</aside>
+
 ```
 
 ---
