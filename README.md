@@ -1,3 +1,3 @@
-# Webutvikling 101
+# Webutvikling
 
-Velkommen til kurs i webutvikling for nybegynnere!
+Velkommen til kurs i webutvikling for sommerstudenter!
