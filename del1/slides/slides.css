@@ -15,6 +15,10 @@
     background-color: white !important;
 }
 
+.remark-slide .remark-slide-content .overlay {
+    background: rgba(0,0,0,.75);
+}
+
 .hvr-wobble-horizontal, .hvr-wobble-vertical, .en-knapp{
     padding: 1rem;
     margin: 1rem;
