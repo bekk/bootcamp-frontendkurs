@@ -463,14 +463,33 @@ class: center middle
 
 ---
 
+class: middle center
+
+JavaScript er et programmeringspråk
+
+---
+
+class: middle center
+
+ ... men det har ingenting med Java å gjøre.
+
+---
+
+# JavaScript vs. Java
+
+* Dynamisk språk vs. kompilert språk
+* Dynamisk typing vs. statisk typing
+* Prototypebasert arv vs. klassebasert arv
+
+---
+
 
 #JavaScript
 
 ```javascript
   console.log('Hello world!'); // Hello world!
 ```
-
---
+---
 
 ```javascript
   var num = 1;
@@ -481,8 +500,15 @@ class: center middle
     key2: 'value2'
   };
 ```
---
+---
 
+```javascript
+  function hello(name) {
+    return `Hello, ${name}!`;
+  }
+
+```
+---
 ```javascript
   function hello(name) {
     return `Hello, ${name}!`;
@@ -496,96 +522,144 @@ class: center middle
 ```
 ---
 
-# JavaScript casting
+# Typer
 
-```javascript
-  var n = 1;
-  typeof n; // number
-```
+Vi kan bruke **typeof**-operatoren for å sjekke type.
+
+    typeof {};          // 'object'
+
+--
+    typeof [];          // 'object'     WTF?
+
+--
+    typeof 1;           // 'number'
+
+--
+    typeof '';          // 'string'
+
+--
+    typeof true;        // 'boolean'
+
+--
+    typeof false;       // 'boolean'
+
+--
+    typeof minVar       // 'undefined'
 
 --
 
-```javascript
-  var n = '1';
-  typeof n; // string
-```
-
---
-
-```javascript
-  var n = 1;
-  typeof String(n); // string
-```
-
---
-
-```javascript
-  var n = '1';
-  typeof Number(n); // number
-```
+    typeof null;        // 'object'     WTF?
 
 ---
+# Variabler, objekter og datatyper
 
-# JavaScript funksjoner
+En samling av "key-value"
 
-```javascript
-  var someFunction = function() {
-    // gjør noe gøy
-  };
-```
+    var obj = {
+      key1: 'value1',
+      key2: 13,
+      navn: 'ingvild'
+    };
 --
-```javascript
-  someFunction(name);
-```
+    obj.key1;         // 'value1'
 --
-```javascript
-  someOtherFunction(function() {
-    // gjør noe gøy
-  });
-```
-
----
-
-# JavaScript funksjoner
-
-```javascript
-  var name = 'kent';
-
-  var someFunction = function() {
-    console.log(name);
-  };
-```
+    obj['key2'];      // 13
 --
-```
-  // kent
-```
-
----
-# JavaScript i nettleseren
-```html
-  <!doctype html>
-  <html lang="en">
-
-    <head>
-      <title>En enkel HTML-side</title>
-    </head>
-
-    <body>
-      <h1>Her er min fantastisk enkle HTML-side</h1>
-
-      <script type="text/javascript">
-        console.log('her er mitt lille JavaScript!');
-      </script>
-    </body>
-
-  </html>
-```
+    obj.key3;         // undefined
+--
+    delete obj.key1;
+    obj.key1;         // undefined
 
 ???
-Forklar når scriptet blir kjørt
+
+I Java måtte man typisk først ha laget en klasse og definert at objekter av denne typen vil ha disse feltene.
+I JS kan man bare slenge på og ta bort felter som man ønsker, runtime.
+
+Dette gjør det lett å referere til felter som ikke finnes og dermed skape trøbbel.
 
 ---
 
+# Variabler, objekter og datatyper
+
+Value kan være hva som helst.
+
+    var obj = {
+        nestedObj: {
+            nestedProperty: 'en feit streng'
+        },
+        log: function() {
+            console.log('Hello World!');
+        }
+    };
+
+    obj.log(); // Kaller på metoden
+    obj.nestedObj.nestedProperty // Nøster oss nedover
+
+---
+  #Oppgaver - få testene grønne
+   1. https://jsfiddle.net/ingvilin/DuYAc/104/
+   2. https://jsfiddle.net/ingvilin/p0whx7w9/
+   3. https://jsfiddle.net/ingvilin/DuYAc/107/
+   4. https://jsfiddle.net/ingvilin/DuYAc/109/
+
+---
+class: center middle
+
+# JavaScript i nettleseren
+---
+
+class: middle center
+
+Ok - så vi bruker javascript til å skape dynamisk oppførsel på nettsidene våre, og språket er fullt av black magic - men hvordan <em>gjør</em> vi det faktisk?
+
+---
+
+# Document Object Model
+```html
+    <!doctype html>
+    <html>
+     <head>
+      <meta charset="utf-8">
+      <title>All About Cats</title>
+      <style type="text/css">...</style>
+     </head>
+     <body>
+      <h1>CATS!</h1>
+      <img id="mainpicture" src="http://placekitten.com/200/300">
+      <p>So cute!</p>
+      <ul>
+       <li class="catname">Lizzie</li>
+       <li class="catname">Daemon</li>
+      </ul>
+     </body>
+    </html>
+```
+---
+
+class: center
+
+# Document Object Model
+
+![dom-tree](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/DOM.png)
+
+---
+
+# Document Object Model
+
+##Javascript gir oss et rikt API mot DOM-en via [*document*](https://developer.mozilla.org/en/DOM/document)-objektet
+--
+
+Hvis HTML-en inneholder dette...
+```html
+    <img id="mainpicture" src="http://placekitten.com/200/300">
+```
+
+--
+... så kan vi aksessere den slik
+
+    var img = document.querySelector('#mainpicture');
+
+---
 # JavaScript DOM-api
 
 ```javascript
@@ -593,16 +667,15 @@ Forklar når scriptet blir kjørt
 ```
 
 --
+--
 
 ```javascript
-  var boks = document.querySelector('#boks');
   boks.innerHTML;
   // <a href="mer.html">Klikk her</a> for å lære mer
 ```
 --
 
 ```javascript
-  var boks = document.querySelector('#boks');
   boks.textContent;
   // Klikk her for å lære mer
 ```
@@ -613,7 +686,15 @@ Forklar når scriptet blir kjørt
   var text = document.querySelector('#boks').textContent;
   // Klikk her for å lære mer
 ```
+---
+class: middle center
 
+# DevTool
+
+## ⌘ + ⌥ + i &nbsp;/&nbsp; ctrl + ⇧ + i
+
+???
+Vis document i consolet
 ---
 # JavaScript DOM-api
 
@@ -672,18 +753,44 @@ class: center middle
 ![](resources/remove-element-result.png)
 
 ---
-class: middle center
+# JavaScript-filer
+```html
+  <!doctype html>
+  <html lang="en">
 
-# DevTool
+    <head>
+      <title>En enkel HTML-side</title>
+    </head>
 
-## ⌘ + ⌥ + i &nbsp;/&nbsp; ctrl + ⇧ + i
+    <body>
+      <h1>Her er min fantastisk enkle HTML-side</h1>
 
+      <script type="text/javascript">
+        console.log('her er mitt lille JavaScript!');
+      </script>
+    </body>
+
+  </html>
+```
 
 ???
-Vis frem chaining av opperasjoner
-.replace(/\s+/g, ' '); for å strippe whitespace
+Forklar når scriptet blir kjørt
 
 ---
+# JavaScript-filer
+
+## `fil.html`:
+```html
+<body>
+  <script type="text/javascript" src="heia.js"></script>
+</body>
+```
+## `heia.js`:
+```js
+console.log('heia');
+```
+---
+
 class: split
 
 #Oppgave
@@ -1767,35 +1874,6 @@ container.addEventListener('click', function(event) {
 Les mer om Event på Mozilla Developer Network:
 
 https://developer.mozilla.org/en-US/docs/Web/API/Event
----
-class: center middle
-
-# JavaScript-filer
-
----
-# JavaScript-filer
-
-## `fil.html`:
-```html
-<body>
-  <script type="text/javascript">
-    console.log('heia');
-  </script>
-</body>
-```
----
-# JavaScript-filer
-
-## `fil.html`:
-```html
-<body>
-  <script type="text/javascript" src="heia.js"></script>
-</body>
-```
-## `heia.js`:
-```js
-console.log('heia');
-```
 ---
 class: split
 
