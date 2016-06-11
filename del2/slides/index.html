@@ -2,35 +2,23 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Webutvikling 101</title>
+    <title>Frontendkurs</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/bekk/remark/master/dist/bekk.css">
     <link rel="stylesheet" href="slides.css">
   </head>
   <body class="bekk-black">
     <textarea id="source">
 
-class: front-page
-  # Webutvikling 101
-  ## UiO
-
-  <span class="today-date"></span>
----
-#Webutvikling 101
-
-##Repo
-<div style="font-size: 2em">
-  <a href="https://github.com/bekk/webutvikling101">http://tiny.cc/bekkweb101</a>
-</div>
-<br>
-<br>
-<div style="font-size: 2em">
-  <a href="https://github.com/bekk/webutvikling101">github/bekk/webutvikling101</a>
-</div>
-
----
 class: center middle
+  #Del 2
 
-<button id="load-data" class="btn loud">Last mer data</button>
+---
+class: center
+
+<iframe src="http://localhost:5006/" style=" height: 100%; width: 50%;" />
+
+???
+Gi en inroduksjon til oppgaven vi skal gjennom
 ---
 
 <div class="example-box" style="
@@ -126,16 +114,62 @@ class: center middle
 ```javascript
   fetch('http://localhost:5000/sok?tag=bekk')
 ```
+--
+
+```javascript
+  var promise = fetch('http://localhost:5000/sok?tag=bekk')
+  console.log(promise);
+
+  Promise: {
+            [[PromiseStatus]]: "pending",
+            [[PromiseValue]]: undefined
+        }
+```
+---
+#asynkront
+```javascript
+  var promise = fetch('http://localhost:5000/sok?tag=bekk');
+
+  promise.then(function(result) {
+        console.log(result)
+        //[Object, Object, Object,...]
+  });
+```
+--
+```javascript
+fetch('http://localhost:5000/sok?tag=bekk').then(function(result) {
+    //...
+  });
+```
+---
+class: middle center
+## Hva om kallet feiler?
 ---
 # Laste data
 
 ```javascript
   fetch('http://localhost:5000/sok?tag=bekk').then(function(response) {
-    // her kan du gjøre noe med responsen
+    //...
+  }).catch(function(error) {
+   //håndter feil
   });
 ```
 
 ---
+# Laste data - chaining
+
+```javascript
+  fetch('http://localhost:5000/sok?tag=bekk').then(function(response) {
+    return response[0];
+  }).then(function(img) {
+    return img;
+  }).catch(function(error) {
+    //gjør noe
+  });
+```
+
+---
+
 class: cols two
 # JavaScript Object Notation - JSON
 --
@@ -220,6 +254,8 @@ class: cols two
     return response.json();
   }).then(function(data) {
     console.log(data);
+  }).catch(function(error) {
+    throw error;
   });
 ```
 --
@@ -238,19 +274,6 @@ class: cols two
     ...
   }]
 ```
----
-# Laste data
-
-```javascript
-  fetch('http://localhost:5000/sok?tag=bekk').then(function(response) {
-    return response.json();
-  }).then(function(data) {
-    console.log(data);
-  }).catch(function(error) {
-    throw error;
-  });
-```
-
 ---
 # Same origin policy
 
@@ -309,12 +332,21 @@ An origin is defined as a combination of URI scheme, hostname, and port number.
 
 <div style="margin-top:0.5em;font-size: 5em">&#128571;</div>
 ---
-class: center middle
+class: middle center
+##Hvorfor er det sånn?
+---
+class: middle center
+##Fordi sikkerhet
+???
+Ble implementert av alle browsere i 1995 Netscape Navigator 2
+---
+class: middle center
+##Cross site scripting
 
-# DevTool
-
-## ⌘ + ⌥ + i &nbsp;/&nbsp; ctrl + ⇧ + i
-
+--
+```javascript
+        <script>alert(document.cookie)</script>
+```
 ---
 class: split
 
