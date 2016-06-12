@@ -1782,7 +1782,7 @@ class: split
 
 # Oppgave
 
-* Ta utgangspunkt i `nedteller.html`-fila i `/assignment`-mappa.
+* Ta utgangspunkt i `nedteller.html` og `nedteller.css` i `/assignment`-mappa.
 * Gi `<main>`-elementet en bredde og midtstill det.
 * Midtstill teksten til telleren
 * Bruk flexbox på div-en med alle knappene (`.buttons`) for å få knappene til å ligge som vist til høyre
@@ -1801,6 +1801,7 @@ Farger:
 ???
 
 trenger ikke få til samme størrelser og farger, men prøv å få til selve layouten
+husk å nevne man kan fortsette på lf, i dette tilfelle solutions/4
 
 ---
 
@@ -1957,7 +1958,7 @@ class: center middle
 --
 
 ```html
-  <button role="button" id="btn">Element</button>
+  <button id="btn">Knapp</button>
 ```
 
 --
@@ -1974,19 +1975,16 @@ class: center middle
 
 ```html
 <div id="buttons">
-  <button role="button" id="btn1">Element</button>
-  <button role="button" id="btn2">Element</button>
-  <button role="button" id="btn3">Element</button>
-  <button role="button" id="btn4">Element</button>
+  <button id="btn1">Knapp1</button>
+  <button id="btn2">Knapp2</button>
+  <button id="btn3">Knapp3</button>
+  <button id="btn4">Knapp4</button>
+  <!-- ... -->
 </div>
 ```
---
+
 ##  Må vi legge til 4 individuelle listeners?
 
----
-class: middle center
-
-# Event Propagation
 
 ---
 # Event Propagation
@@ -1997,16 +1995,17 @@ class: middle center
 # Event Propagation
 
 ```html
-<div id="buttons">
-  <button role="button" id="btn1">Element</button>
-  <button role="button" id="btn2">Element</button>
-  <button role="button" id="btn3">Element</button>
-  <button role="button" id="btn4">Element</button>
+<div class="buttons">
+  <button id="btn1">Knapp1</button>
+  <button id="btn2">Knapp2</button>
+  <button id="btn3">Knapp3</button>
+  <button id="btn4">Knapp4</button>
+  <!-- ... -->
 </div>
 ```
 --
 ```javascript
-var container = document.querySelector('#buttons');
+var container = document.querySelector('.buttons');
 
 container.addEventListener('click', function() {
   console.log('heia');
@@ -2015,18 +2014,14 @@ container.addEventListener('click', function() {
 ---
 # Event Propagation
 
-<iframe src="../solutions/5/nedteller.html" style="width: 100%; height: 100%;" />
----
-# Event Propagation
-
 ## `event`-objektet
 
 ```javascript
-var container = document.querySelector('#buttons');
+var container = document.querySelector('.buttons');
 
 container.addEventListener('click', function(event) {
   var element = event.target;
-  console.log(element.nodeName) //=>BUTTON
+  console.log(element.nodeName) //=>BUTTON eller DIV
 });
 ```
 ---
@@ -2035,21 +2030,18 @@ container.addEventListener('click', function(event) {
 ## `event`-objektet
 
 ```javascript
-var container = document.querySelector('#buttons');
+var container = document.querySelector('.buttons');
 
 container.addEventListener('click', function(event) {
   var element = event.target;
-  if(element.nodeName === 'BUTTON') {
-    doIncrement();
-  } else {
-    //do nothing
+  if(element.nodeName !== 'BUTTON') {
+    return; // do nothing
   }
+  var number = element.//....
+
 });
 ```
---
-Les mer om Event på Mozilla Developer Network:
 
-https://developer.mozilla.org/en-US/docs/Web/API/Event
 ---
 class: split
 
@@ -2057,9 +2049,10 @@ class: split
 
 Dere skal gjøre nedtelleren interaktiv!
 
-- Lag en ekstern JavaScript-fil som blir referert fra HTML
-- Fang opp klikk-events på knappene
-- Oppdatere konsollet på nedtelleren med tallet som ble klikket på
+- Lag en JavaScript-fil som du inkluderer nederst i `<body>` i HTMLen din<br/>
+    (`<script type="text/javascript" src="navnPaFil.js"></script>`)
+- Legg til en klikk-listener på `.buttons`
+- Om en knapp ble trykket på, legg til verdien til knappen i `output`
 
 
 <iframe src="../solutions/6/nedteller.html" style="width: 50%" />
