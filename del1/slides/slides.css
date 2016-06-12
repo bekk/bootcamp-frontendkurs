@@ -50,6 +50,34 @@
 
 }
 
+.i-gokk-position {
+    width: 450px;
+    height: 500px;
+    position: absolute; top: 110px; right: 150px;
+}
+
+.position {
+    width: 350px;
+    background: black;
+    height: 500px;
+}
+
+.position div {
+    line-height: 50px;
+}
+
+.position .a {
+    background: red;
+}
+
+.position .b {
+    background: blue;
+}
+
+.position .c {
+    background: green;
+}
+
 @keyframes hvr-wobble-vertical {
     16.65% {
         -webkit-transform: translateY(8px);

@@ -1411,7 +1411,151 @@ Blir jo ikke veldig spenstige design når alt bare kommer slik etter hverandre, 
 <div style="background: black; width: 400px; margin: 0 auto;">Midtstilt blokk</div>
 
 
+---
 
+class: split
+
+# Posisjonering
+
+.i-gokk-position[```css
+div.a {
+    position: static;
+}
+div.b {
+    position: static;
+}
+div.c {
+    position: static;
+}
+```]
+
+<div class="position">
+
+    <div class="a">A</div>
+    <div class="b">B</div>
+    <div class="c">C</div>
+</div>
+---
+
+class: split
+
+# Posisjonering
+
+.i-gokk-position[```css
+div.a {
+    position: static;
+}
+div.b {
+    position: relative;
+}
+div.c {
+    position: static;
+}
+```]
+
+<div class="position">
+
+    <div class="a">A</div>
+    <div class="b" style="position: relative">B</div>
+    <div class="c">C</div>
+</div>
+
+---
+
+class: split
+
+# Posisjonering
+
+.i-gokk-position[```css
+div.a {
+    position: static;
+}
+div.b {
+    position: relative;
+    top: 10px;
+    left: 15px;
+}
+div.c {
+    position: static;
+}
+```]
+
+<div class="position">
+
+    <div class="a">A</div>
+    <div class="b" style="position: relative; left: 15px; top: 10px">B</div>
+    <div class="c">C</div>
+</div>
+---
+
+class: split
+
+# Posisjonering
+
+
+
+<div class="position">
+    <div class="a">A</div>
+    <div class="b" style="position: absolute; left: 15px; top: 10px">B</div>
+    <div class="c">C</div>
+</div>
+
+.i-gokk-position[```css
+div.a {
+    position: static;
+}
+div.b {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+div.c {
+    position: static;
+}
+```]---
+
+class: split
+
+# Posisjonering
+
+
+
+<div class="position" style="position: relative">
+    <div class="a">A</div>
+    <div class="b" style="position: absolute; left: 15px; top: 10px">B</div>
+    <div class="c">C</div>
+</div>
+
+.i-gokk-position[```css
+div.a {
+    position: static;
+}
+div.b {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+div.c {
+    position: static;
+}
+.container {
+    position: relative;
+}
+```]
+
+---
+
+#Oppgaver
+
+ * Midtstilling: https://jsfiddle.net/Matsemann/wg8oLh8a/
+ * Posisjonering: https://jsfiddle.net/Matsemann/b75wz3mj/
+
+
+???
+Løsninger
+
+ * https://jsfiddle.net/Matsemann/qb34mrut/1/
+ * https://jsfiddle.net/Matsemann/t7jt0tyd/1/
 
 ---
 class: split
