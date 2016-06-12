@@ -10,5 +10,5 @@ buttonsContainer.addEventListener('click', function(event) {
   var number = element.textContent;
   var originalNumber = output.textContent;
 
-  output.textContent = originalNumber === '0' ? number : originalNumber += number;
+  output.textContent = originalNumber === '0' ? number : originalNumber + number;
 });

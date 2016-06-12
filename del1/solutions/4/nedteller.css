@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   background-color: #262626;
   color: #ffffff;
@@ -12,7 +8,7 @@ main {
   margin: 0 auto;
 }
 
-.console {
+output {
   display: block;
   font-size: 5.5rem;
   margin: 1rem;
@@ -26,12 +22,7 @@ main {
   margin-bottom: 2rem;
 }
 
-.button {
-  display: block;
-  cursor: pointer;
-}
-
-.button--number {
+.buttons button {
   font-size: 1.8rem;
   padding: 0.5em 1.7em;
   background: transparent;
@@ -39,30 +30,14 @@ main {
   border: 1px solid #c6c8ca;
   width: 28%;
   margin: 2%;
-  transition: background 0.2s ease-out, border 0.2s ease-out;
 }
 
-.button--number:hover {
-  background: #fd5158;
-  border-color: #fd5158;
-}
-
-.button--number:focus {
-    background: orange;
-    border-color: orange;
-    outline: none;
-}
-
-.button--main {
+.startbutton {
   font-size: 2.2rem;
   padding: 0.5em 2.5em;
   background: #fd5158;
   color: #ffffff;
   border: none;
+  display: block;
   margin: 0 auto;
-}
-
-.button--main:hover {
-    background: white;
-    color: #000000;
 }

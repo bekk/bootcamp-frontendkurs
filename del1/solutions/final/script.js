@@ -11,7 +11,7 @@ function buttonsClickHandler(event) {
   var number = element.textContent;
   var currentNumber = output.textContent;
 
-  output.textContent = currentNumber === '0' ? number : currentNumber += number;
+  output.textContent = currentNumber === '0' ? number : currentNumber + number;
 }
 
 function startClickHandler(event) {
