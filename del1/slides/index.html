@@ -998,11 +998,41 @@ Eller så kan man style ting mer spesifikt, ved å lage såkalte klasser, som ma
 
 Tredje måten er å selecte ETT spesifikt html-element med en gitt id, ved å bruke firkanttegn. En slik css-regel blir ikke veldig gjenbrukbar. I praksis styler man ofte tags på en generell måte, og så lager man klasser med mer spesifikke regler.
 
-<!--
+---
 
-#CSS - HVA?
+#CSS - Avanserte selectorer
 
-##Avanserte selectorer
+
+a og b kan være `tag`, `.klasse` eller `#id`
+
+```css
+a {...}                             /* vanlig selector, .btn-ok */
+
+a b {...}                           /* nestede, b må være inni a, .boks .heading */
+
+a > b {...}                         /* nestede, b med a som nærmeste parent, .boks > .heading */
+
+ab  {...}                           /* må ha både a og b, button.btn-ok, .btn.btn-ok */
+
+a:state {...}                       /* a:hover */
+
+a:last-child {...}                  /* siste av parent, li:last-child */
+
+a:nth-child(2n+1) {...}             /* alle n som matcher uttrykket */
+
+a[attributt="verdi"] {...}          /* matcher på attributt, a:[href^="https://"] */
+
+```
+
+???
+
+Ikke alle brukes så ofte i praksis
+
+---
+
+
+#CSS - Avanserte selectorer
+
 
 
 
@@ -1029,11 +1059,6 @@ button.klasse1 { ... } /* alle knapper som har klasse 1 */
 ```
 
 
-???
-
-Disse kan også kombineres for å selecte enda mer spesifikke ting...
-
--->
 ---
 
 
@@ -1091,14 +1116,15 @@ class: split
 * Endre størrelse, bakgrunnsfarge, border/ramme og tekstfarge på knappene
 
 
+## Bonus
+
+* http://flukeout.github.io/
+
+
 
 <iframe src="../solutions/3/teller.html" style="width: 50%" />
 
 
-
-???
-
-Avhenger av hvordan oppgaven blir splittet opp
 
 ---
 
@@ -1107,6 +1133,9 @@ class: center middle
 
 #Layout
 ## med CSS
+
+???
+Dimensjoner, flyt, posisjonering
 
 ---
 
