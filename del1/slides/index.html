@@ -661,12 +661,14 @@ Hvis HTML-en inneholder dette...
 
 ---
 # JavaScript DOM-api
-
+```html
+<div id="boks">
+    <a href="mer.html">Klikk her</a> for å lære mer
+</div>
+ ```
 ```javascript
   var boks = document.querySelector('#boks');
 ```
-
---
 --
 
 ```javascript
@@ -757,19 +759,20 @@ class: center middle
 ```html
   <!doctype html>
   <html lang="en">
-
     <head>
       <title>En enkel HTML-side</title>
+        <script type="text/javascript">
+          console.log('her er mitt lille JavaScript!');
+       </script>
     </head>
 
     <body>
       <h1>Her er min fantastisk enkle HTML-side</h1>
 
       <script type="text/javascript">
-        console.log('her er mitt lille JavaScript!');
+        console.log('her er mitt andre lille JavaScript!');
       </script>
     </body>
-
   </html>
 ```
 
