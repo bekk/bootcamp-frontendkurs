@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "start": "node server/server.js"
-  },
-  "dependencies": {
-    "node-flickr": "^1.0.0"
-  }
-}
