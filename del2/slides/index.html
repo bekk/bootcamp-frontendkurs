@@ -341,11 +341,12 @@ class: middle center
 Ble implementert av alle browsere i 1995 Netscape Navigator 2
 ---
 class: middle center
-##Cross site scripting
+##Apropos sikkerhet - Cross site scripting
 
 --
-```javascript
-        <script>alert(document.cookie)</script>
+<input type="text" value="skriv noe her"/> <button>Send</button>
+```html
+   <script> alert(document.cookie); </script>
 ```
 ---
 class: split
@@ -659,22 +660,17 @@ class: center middle
 #Forms
 
 ---
+class: center middle
 
-#Form
+Representerer en <em>interaktiv</em> del av siden, og brukes for å <em>sende</em> data til en server
+--
 
-Representerer en interaktiv del av siden, og brukes for å sende data til en server
 ```html
 <form></form>
 ```
-
 ---
 
 #Form
-
-Representerer en interaktiv del av siden, og brukes for å sende data til en server
-```html
-<form></form>
-```
 
 *Noen nyttige attributter*
 
@@ -682,22 +678,7 @@ Representerer en interaktiv del av siden, og brukes for å sende data til en ser
 <form action="url" method="get"></form>   // url?key=value1&key2=value2
 <form action="url" method="post"></form>  // url
 ```
-
----
-
-#Form
-
-Representerer en interaktiv del av siden, og brukes for å sende data til en server
-```html
-<form></form>
-```
-
-*Noen nyttige attributter*
-
-```html
-<form action="url" method="get"></form>   // url?key=value1&key2=value2
-<form action="url" method="post"></form>  // url
-```
+--
 
 Sjekk <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form" target="_blank">MDN form</a>
 
@@ -708,104 +689,42 @@ Sjekk <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form" t
 Definerer hva som skal sendes til serveren
 ```html
 <form action="url" method="get">
-  <input type="text" />
-</form>
-```
-
----
-
-#Input
-
-Definerer hva som skal sendes til serveren
-```html
-<form action="url" method="get">
-  <input type="text" />
-</form>
-```
-
-```html
-<form action="url" method="get">
   <input type="text" name="sok" value="" placeholder="Søk" />
 </form>
 ```
-
----
-
-#Input
-
-Definerer hva som skal sendes til serveren
-```html
-<form action="url" method="get">
-  <input type="text" />
-</form>
-```
-
-```html
-<form action="url" method="get">
-  <input type="text" name="sok" value="" placeholder="Søk" />
-</form>
-```
+--
 
 <label><input type="checkbox" /> checkbox</label><br />
 <label><input type="radio" name="radio" /> radio1</label>
 <label><input type="radio" name="radio" /> radio2</label><br />
 <label><input type="date" /></label>
 
----
-
-#Input
-
-Definerer hva som skal sendes til serveren
-```html
-<form action="url" method="get">
-  <input type="text" />
-</form>
-```
-
-```html
-<form action="url" method="get">
-  <input type="text" name="sok" value="" placeholder="Søk" />
-</form>
-```
-
-<label><input type="checkbox" /> checkbox</label><br />
-<label><input type="radio" name="radio" /> radio1</label>
-<label><input type="radio" name="radio" /> radio2</label><br />
-<label><input type="date" /></label>
-
+--
 
 Sjekk <a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/Input" target="_blank">MDN input</a>
 
 ---
 class: cols two
 
-#Input
+#Input - uthenting av verdien
 
-.col[
-<input type="text" data-ex="1" data-listen-for="keyup" data-value-prop="value" />
-]
-.col[
-<span id="ex1"></span>
-]
+For tekstelement:
 
-.col[
-<input type="checkbox" data-ex="2" data-listen-for="change" data-value-prop="checked" />
-]
-.col[
-<span id="ex2"></span>
-]
+Skriv noe her: <input type="text" data-ex="1" data-listen-for="keyup" data-value-prop="value" />
 
-Uthenting av verdien til ett element varierer.
-
-For tekstelement;
 ```javascript
 document.querySelector('#da-tekstelement').value
 ```
 
-For checkbox;
+--
+<p>For checkbox:</p>
+<input type="checkbox" data-ex="2" data-listen-for="change" data-value-prop="checked" />
+<span id="ex2">Velg meg</span>
+
 ```javascript
 document.querySelector('#da-checkbox').checked
 ```
+
 
 ---
 class: cols two
