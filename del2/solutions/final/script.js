@@ -11,9 +11,9 @@ function renderImages(data) {
     var img = data[i];
     html += `
       <figure>
-        <a href="${window.location.pathname}/${i}">
-          <img src="${img.url}" />
-        </a>
+      <a href="${window.location.pathname}/${i}">
+        <img src="${img.url}" />
+      </a>
         <figcaption>${img.title}</figcaption>
       </figure>
     `;
@@ -25,25 +25,26 @@ function renderImages(data) {
 function renderOneImage(img) {
   return `
     <figure class="fullwidth">
-      <img src="${img.url}" />
-      <figcaption>${img.title}</figcaption>
+        <img src="${img.url}" />
+        <figcaption>${img.title}</figcaption>
     </figure>
   `;
 }
 
 function router() {
-  if(window.location.pathname === '/') {
-    document.querySelector('main').innerHTML = '';
-    return;
-  }
+  var url = window.location.pathname;
 
-  var url = window.location.pathname.split('/');
-  getPhotos(url[1]).then(function(data) {
-    var index = Number(url[2]);
+  if (url == "/") { return; }
+
+  var urlDeler = url.split('/');
+  var tag = urlDeler[1];
+  var bildeId = urlDeler[2];
+
+  getPhotos(tag).then(function(data) {
     var html;
 
-    if (!isNaN(index)) {
-      html = renderOneImage(data[index]);
+    if (bildeId) {
+      html = renderOneImage(data[bildeId]);
     } else {
       html = renderImages(data);
     }
@@ -52,14 +53,17 @@ function router() {
   });
 }
 
-router();
-
 document.querySelector('form').addEventListener('submit', function(event) {
   event.preventDefault();
   var tag = event.target.querySelector('input').value;
-  history.pushState(undefined, '', '/' + tag);
+  history.pushState(null, '', tag);
   router();
 });
+
+
+window.addEventListener('popstate', router);
+
+router();
 
 document.querySelector('main').addEventListener('click', function(event) {
   var parent = event.target.parentNode;
@@ -72,5 +76,3 @@ document.querySelector('main').addEventListener('click', function(event) {
   }
 });
 
-
-window.addEventListener('popstate', router);

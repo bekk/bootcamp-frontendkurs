@@ -21,9 +21,12 @@ function renderImages(data) {
 }
 
 function router() {
-  var tag = window.location.pathname;
+  var url = window.location.pathname;
 
-  if (tag == "/") { return; }
+  if (url == "/") { return; }
+
+  var urlDeler = url.split('/');
+  var tag = urlDeler[1];
 
   getPhotos(tag).then(function(data) {
     var html = renderImages(data);
