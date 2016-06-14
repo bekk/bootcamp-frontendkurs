@@ -370,7 +370,7 @@ class: center middle
 
 #Ønsket resultat
 
-<iframe src="http://localhost:5002" style="height: 80%; width: 50%;" />
+<iframe src="http://localhost:5002" style="height: 80%; width: 100%;" />
 
 ---
 
@@ -554,6 +554,10 @@ getPhotos('bekk').then(function(data) {
 class: center middle
 #Responsive design
 
+???
+Sammenligne vg.no med abakus.no evt ifinavet.no eller nav.no
+vise smal/stor side horisontal scroll, zoom
+
 ---
 # Hvorfor?
 * Trenger bare lage én nettside, fungerer på alle enheter
@@ -562,15 +566,33 @@ class: center middle
 * Zoomkrav i universell utforming
 
 
+
+---
+# Strategi
+
+* Mobile first
+    * Lettere å legge til enn å ta bort
+
+
+* Bruke enheten *rem* for de fleste størrelser
+* 1rem = font-size til rot-elementet
+
+```css
+html {
+    font-size: 16px;
+}
+.styling {
+    font-size: 1.5rem;
+}
+```
+
+
 ???
-Sammenligne vg.no med abakus.no evt ifinavet.no
-vise smal/stor side horisontal scroll, zoom
 
 Videre vise hva vi ønsker å oppnå, localhost:5003
 Vise ser bra ut i mobilbredde, dårlig i fullbredde
 Sette til 50/49%, vise ser bedre ut. Sette 30% fullbredde, vise ser bra ut
 Men da dårlig på mobil!
-
 
 ---
 #Media queries
@@ -1017,7 +1039,10 @@ Koden over antar at lenken ligger rundt et bilde, og at alle lenker skal føre t
   * Om `<figure>` får klassen `fullwidth` får bildet automatisk riktig styling.
 
 ## Bonus
-Se i developer tools -> Network alle kall som går, til serveren. Prøv å bli kvitt de som er unødvendige.
+* Åpne developer tools og så network fanen og se på kallene som går til serveren når du gjør forskjellige handlinger.
+* Er det noen kall som kunne vært unngått?
+* F. eks. når man har søkt på bekk og trykker på et bilde, gjøres det et nytt søk på bekk?
+    * Prøv å unngå det ekstra søket
 
 
 
