@@ -822,119 +822,146 @@ class: split
 <iframe src="http://localhost:5004/" style="width: 50%; border-left: 1px solid #515151;" />
 
 ---
+class: center middle
 
-class: center middle bekk-top
+# Single Page Applications
 
-# Routing
+???
 
+Vise GitHub med rød banner, sammenligne med VG med rød banner
+Vise den laster bare innhold midt på siden, sånn som vår app!!
+Men at den i tillegg oppdaterer URL, og lar en gå frem og tilbake
+
+Fordeler SPA + hvorfor URL
+
+APIer: window.location, men kan ikke bruke settingen
+pushstate popstate
+
+router!
 
 ---
 
-# Routing
+# SPA - Hvorfor?
 
-_Routing_ bestemmer handlingen(e) som skal håndtere en forespørsel.
+* Mer effektivt, unngår å laste hele siden på nytt
+* Oppleves bedre for brukeren
+* Visker ut skillet mellom desktop-applikasjoner og nettsider
+
+Må oppdatere URL
+* Lar en bruke fram- og tilbakeknappene i nettleseren
+* Kan bokmerke og dele lenker
+
+---
+
+# Lese ut URL
+
+`window.location` inneholder masse info om hvor brukeren er
+
+```javascript
+// http://localhost:9000/bekk/1
+console.log(window.location);
+// ->
+{
+    protocol: "http:",
+    hostname: "localhost",
+    port: "9000",
+    pathname: "/bekk/1"
+    ...
+}
+```
+
+---
+
+# Lese ut riktig del av URL
+```javascript
+// http://localhost:9000/bekk/1
+var path = window.location.pathname; // '/bekk/1'
+var deler = path.split('/'); // ['', 'bekk', '1']
+var tag = deler[1];
+var id = deler[2];
+```
+
+---
+
+# Modifisere URL
+
+Kan sette verdien til `window.location` og `window.location.pathname` selv.
+
+```javascript
+window.location = 'http://vg.no';
+
+window.location.pathname = '/elv';
+```
 
 --
-
-## Lokasjonsobjektet
-
-```javascript
-window.location
-```
-... returnerer et lokasjonsobjekt som inneholder informasjon om dokumentets _lokasjon_
-
---
-
-## Stien
-
-```javascript
-window.location.pathname
-```
-... returnerer stien som ressursen du besøker ligger på
+Men dette fører til en fullstendig sidelast :(
 
 ---
 
-# Routing
-
-Oppdatere stien
+# History API
+HTML5 kom med et API som lar en modifisere URL uten sidelast
 
 ```javascript
-window.location.pathname = '/foo/bar';
-
-window.location.pathname; // /foo/bar
+history.pushState(state, title, URL);
 ```
 
---
-
-Vi kan bruke dette til å feks. lagre unna tilstanden til applikasjonen.
-
----
-
-# Routing
-
-Tolke stien
+I praksis bruker man ofte bare siste parameter
 
 ```javascript
-var path = window.location.pathname.split('/'); // ['', 'foo', 'bar']
-path[1]; // foo
-path[2]; // bar
+history.pushState(null, '', '/bekk/1');
 ```
-
 ---
 
-# Routing
-
-Håndtere tilstanden til applikasjonen
+# History API
+Kan også lytte på når brukeren går frem og tilbake i nettleseren
 
 ```javascript
-// http://example.com/tech/19
-
 function router() {
-  var path = window.location.pathname.split('/');
-
-  var type = path[1]; // tech
-  var id = path[2]; // 19
-
-  getPost(type).then(function (data) {
-    var post = data[id];
-
-    // gjør noe med post nr 19
-  })
+    console.log(window.location.pathname);
 }
 
-// kaller router
+window.addEventListener('popstate', router);
+```
+
+---
+
+# Routing
+
+Routing er et vanlig navn på logikken som bestemmer hva som skal skje basert på URLen brukeren er på
+
+```javascript
+function router() {
+    var path = window.location.pathname;
+    var deler = path.split('/');
+    // ... gjør ting basert på verdier
+}
+```
+--
+Må kalle den ved oppstart
+
+```javascript
 router();
 ```
 
 ---
 
-class: split
-
 # Oppgave
+* URLen i nettleseren skal oppdatere seg ved søk
+    * Lag en router-funksjon som søker på det som ligger i URLen
+    * I eventlisteneren for submit, oppdater URLen og kall routeren
+* Skal kunne bruke frem- og tilbakeknappene i nettleseren
+    * Legg til en popstate-listener som kaller routeren
+* Skal kunne åpne siden rett på et søk
+    * Kall router-funksjonen i det siden lastes
 
-Forsett på løsningen fra forrige oppgave
+http://localhost:5005
 
-* Lag en `router`-funksjon som tolker stien med formatet: `http://host/søkertekst`
-  * om **søketekst** er oppgitt: vis resultater for søketeksten
-  * Om **søketekst** ikke er oppgitt, vis kun søkefelt
-* Få søkefunksjonen til å oppdatere stien ved søk
+## Bonus
 
-Feks.: når du søker etter **norway** skal stien bli: http://localhost:5000/norway. Da skal du vise alle resultater for søk på **norway**
-
-<iframe src="http://localhost:5005/sok.html" scrolling="no" style="width: 50%; background-color:#fff" />
-
-
+* Legg til støtte for å kunne vise enkeltbilder (se neste slides)
 ---
 
-
-class: center middle bekk-top
-
-# Navigasjon
-
-
----
-
-# Navigasjon
+# Lenker
 
 `Anchor`-tagen definerer en hyperkobling til en annen ressurs på weben
 
@@ -942,193 +969,57 @@ class: center middle bekk-top
 <a>...</a>
 ```
 
---
+Der attributtet href sier hvor lenken peker
 
-Nyttige attributter på `Anchor`
 
 ```html
-<a href="...">...<a>
-<a href="..." target="_blank">...<a>
-<a href="..." download="AwesomeFil.zip">...<a>
+<a href="/bekk/2">Se bilde 2</a>
 ```
 
---
+Kan legge lenke på et bilde
 
-Lenke på bilder:
 ```html
-<a href="/img/bilde.jpg">
-  <img src="/img/bilde.jpg" alt="Dette er et bilde">
+<a href="/bekk/2">
+  <img src="/url/til/bilde.jpg">
 </a>
 ```
-
 ---
 
+# Lenker og Single Page Applications
 
-class: split
+En lenke fører til en full sidelast, på samme måte som `window.location`.
 
-# Oppgave
-
-Forsett på løsningen fra forrige oppgave
-
-* Lag en funksjon som viser kun ett bilde
-* Gjør bildene fra søkeresultatet klikkbare med stien: `/søketekst/indeks`
-* Oppdater router-funksjonen så den tolker stien med formatet: `http://host/søkertekst/indeks`
-  * om **søketekst** og **indeks** er oppgitt: vis kun dette bildet
-
-
-<iframe src="http://localhost:5005/sok.html" scrolling="no" style="width: 50%; background-color:#fff" />
-
-
-
-
----
-
-class: center middle bekk-top
-
-# Single-page application
-
----
-
-class: center middle
-
-Lage nettsider / web-applikasjoner som passer inn på _én_ side.
-
----
-class: center middle
-<img src="../../del1/slides/resources/apple-pages.png"/>
-.source[https://www.icloud.com/#pages]
----
-class: center middle
-<img src="../../del1/slides/resources/google-maps.png"/>
-.source[https://maps.google.com/]
----
-class: center middle
-<img src="../../del1/slides/resources/spotify.png"/>
-.source[https://play.spotify.com/]
----
-
-# Single-page application
-
-## Hva?
-
-Vi ønsker:
-
-* unngå at siden lastes på ny når man klikker på en lenke
-* kunne gå frem og tilbake i historikken
-* kunne sende direktelenke til andre
-
-## Hvorfor?
-
-Vi får en bedre brukeropplevelse med en flyt som minner om en desktop applikasjon
-
-## Hvordan?
-
-History API
-
----
-
-# Single-page application
-
-## History
-
-History lar det manipulere nettleserhistorikken for en nettside:
-
-* pushState
-* popstate
-
----
-
-# Single-page application - pushState
-
-**pushState** lar en skrive til nettleserhistorikken for hvert operasjon vi utfører
-
-```javascript
-history.pushState(state, title, URL);
-```
-
-* **state:** tilstandsobjekt
-* **title:** tittel på siden
-* **URL:** sti til ressurs
-
---
-
-Ikke alltid at man trenger å definere alle parametre:
-```
-history.pushState(undefined, '', 'foo/bar')
-```
-
----
-
-# Single-page application - popstate
-
-For hver gang du går tilbake i historikken vil eventen **popstate** bli kalt. Vi kan lytte på denne, og kalle vår egen router-funksjon for å oppdatere innholdet i siden.
-
-```javascript
-window.addEventListener('popstate', router);
-```
-
----
-
-# Single-page application
-
-## pushState / popstate vs window.location
-
-window.location holder deg i samme dokument kun om du endrer på hash-verdien. Med _History_ unngår du at nettleseren oppdaterer dokumentet.
-
----
-
-# Single-page application - anchor hijacking
-
-Vi ønsker å unngå at nettleseren oppdaterer siden når vi besøker en ny lenke. Dette gjør vi ved å stoppe standard oppførsel som skjer når man klikker på lenkene:
+Det kan vi unngå ved å "hijacke" klikk på lenker, og istedet kalle `history.pushstate` med URLen som ble lenket til.
 
 ```javascript
 document.querySelector('main').addEventListener('click', function (event) {
-  if (event.target.tagName === 'A') {
-    event.preventDefault();
-
-    // Update history and call router
-  }
-});
-```
-
----
-
-# Single-page application - Eksempel
-
-HTML:
-
-```html
-<a href="/foo/bar"><img src="..." alt="..."></a>
-```
-
-JavaScript:
-
-```javascript
-document.querySelector('main').addEventListener('click', function (event) {
-  var parent = event.target.parentNode;
+  var parent = event.target.parentNode; // klikkes på et bilde, finner a-taggen rundt
 
   if (parent.tagName === 'A') {
-    event.preventDefault();
+    event.preventDefault(); // hindrer lenken i å laste en ny side
     var href = parent.getAttribute('href');
-    history.pushState(undefined, '', href);
-    router();
+    history.pushState(undefined, '', href); // leser ut href verdien og setter den i urlen
+    router(); // kaller routeren nå som vi har en oppdatert URL
   }
 });
 ```
 
----
+Koden over antar at lenken ligger rundt et bilde, og at alle lenker skal føre til en pushstate, noe som er godt nok for vår bruk.
 
-class: split
+---
 
 # Oppgave
 
-Forsett på løsningen fra forrige oppgave
+* Legg en lenke rundt bildene som vises, som lenker til det man har søkt på pluss hvilken nummer bildet er.
+  * F. eks. href="/bekk/0", href="/bekk/1" osv.
+* Når et bilde klikkes på, hijack eventet og bruk pushstate til å oppdatere URL
+* I routeren, sørg for at bare bildet med riktig nummer vises om URLen inneholder et nummer etter søkestrengen
+  * Om `<figure>` får klassen `fullwidth` får bildet automatisk riktig styling.
 
-* Bytt ut oppdatering av window.location med pushState
-* Overstyr klikking på lenker slik at du unngår at nettleseren oppdaterer siden
-* For hver gang du klikker på en lenke skal history oppdateres, og router() kalles
+## Bonus
+Se i developer tools -> Network alle kall som går, til serveren. Prøv å bli kvitt de som er unødvendige.
 
-<iframe src="http://localhost:5006/sok.html" scrolling="no" style="width: 50%; background-color:#fff" />
+
 
 ---
 
@@ -1146,8 +1037,7 @@ class: center middle
         highlightStyle: 'monokai',
         navigation: {
           scroll: false
-        },
-	slideNumberFormat: ''
+        }
       });
 
       var dateStr = new Date().toLocaleString('nb-NO', { year: 'numeric', month: 'long', day: 'numeric' });
