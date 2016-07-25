@@ -1928,36 +1928,101 @@ class: middle center
 ---
 class: middle center
 
-## transition
+## Animasjoner
+---
+class: middle center
+## Animasjoner
+-kommer av det latinske ordet Anima som betyr sjel
 
-```css
-    div {
-        transition: <property> <duration> <timing-function> <delay>;
-    }
-```
+???
+Helt fra gammelt av har man prøvd å gi materialistiske ting sjel
+---
+class: center middle
+
+<iframe style="width: 100%; height: 100%;" src="http://www.burlingtonnews.net/burlington_ufo_center.html" />
+
+???
+I starten av weben ble animasjoner stortsett brukt som et "morsomt" element eller til pynt
+---
+class: center middle
+
+<iframe style="width: 100%; height: 100%;" src="http://www.dpgraph.com/" />
+
+---
+class: center middle
+
+![](resources/content-requires-flash.jpg)
+???
+Som brukte mye ressurser
+---
+class: center middle
+## Nå kan det meste gjøres med CSS3
+---
+class: center middle
+<a href="http://www.kikk.be/2015"> http://www.kikk.be/2015 <a/>
+
+???
+Mens nå brukes det mye innenfor UX - hjelpe å vise hvor man kan interagere, etterligner menneskelig oppførsel og bevegelser fra naturen (tyngdekraft, bølger, magneter osv)
+                så man lettere skal kunne forstå noe digitalt, spiller mye på psykologi
+---
+
+<iframe style="width: 100%; height: 100%;" src="http://tympanus.net/Development/HoverEffectIdeas/"/>
+
+---
+class: middle center
+## transition gir oss mulighet til å kontrollere hastigheten på en animasjon
 ---
 class: middle center
 
 ## transition
 
-```css
     button {
+        transition-property: all, height, width, background-color;
+--
+        transition-delay: 0s;
+--
+        transition-duration: 0s;
+--
+        transition-timing-function: ease, ease-in, ease-out, ease-in-out;
+    }
+---
+class: middle center
+```css
+    div {
+        transition: <property> <duration> <timing-function> <delay>;
+    }
+```
+--
+```css
+    button: {
         background-color: blue;
         width: 200px;
-        transition: width 2s, background-color 2s, transform 2s;
+        transition: background-color 4s ease-in 1s, width ease;
     }
 
     button:hover {
         background-color: red;
         width: 400px;
-        transform: rotate(180deg);
     }
-
 ```
-
 ---
-class: center middle
-
+class: middle center
+## Transform
+???
+Brukes til å endre koordinatsystemet
+---
+class: middle center
+```css
+        button {
+            transform: translate /*flytte elementet opp/ned/sideveis*/
+                       scale,
+                       rotate,
+                       skew /*tilte elementet*/
+        }
+```
+<a href="https://css-tricks.com/almanac/properties/t/transform/">Eksempler</a>
+---
+class: middle center
 # DevTool
 
 ## ⌘ + ⌥ + i &nbsp;/&nbsp; ctrl + ⇧ + i
