@@ -18,7 +18,7 @@ class: front-page
 ---
 class: front-page
   # Frontendkurs
-  ## Sommerstudenter
+  ## Nyansatte
 
   <span class="today-date"></span>
 ???
@@ -40,12 +40,12 @@ class: middle center center-img background-white
 
 ##Repo
 <div style="font-size: 2em">
-  <a href="https://github.com/bekk/sommerstudenter-frontendkurs">http://tiny.cc/bekksommerkurs</a>
+  <a href="http://tiny.cc/bekkfrontendkurs">http://tiny.cc/bekkfrontendkurs</a>
 </div>
 <br>
 <br>
 <div style="font-size: 2em">
-  <a href="https://github.com/bekk/sommerstudenter-frontendkurs">github/bekk/sommerstudenter-frontendkurs</a>
+  <a href="https://github.com/bekk/bootcamp-frontendkurs">github/bekk/bootcamp-frontendkurs</a>
 </div>
 
 ---
@@ -397,29 +397,58 @@ Mer semantisk riktig HTML
 ```
 
 ---
-# HTML
+## Flere HTML-tager:
+```html
+     <h1></h1> ... <h6></h6>
+     <ul></ul>
+     <ol></ol>
+     <li></li>
+     <dl></dl>
+     <dt></dt>
+     <dd></dd>
+     <article></article>
+     <section></section>
+     <aside></aside>
+     <table></table>
+     <caption></caption>
+     <button></button>
+     <label></label>
+     <input />
+     <figure></figure>
+     <img />
+     <script></script>
+```
+???
+Spørre om det er noen som vet forskjell på article og section? Huskeregel - ikke tenke på article som en avisartikkel men heller
+en artikkel i en butikk - altså et item - noe som gir mening uten kontekst. Section derimot gir kun mening inni i en kontekst - typisk en article.
+---
+class: center middle
+
+##Attributter
+
+---
+#HTML
 
 ```html
   <div id="unik-id"></div>
-
-  <div class="klasse-av-elementer"></div>
-
-  <div title="Tittle på element"></div>
 ```
-
 --
-&nbsp;
-
+```html
+  <div class="en-klasse en-annen-klasse"></div>
+```
+--
+```html
+  <input type="checkbox" checked/>
+```
+--
+```html
+  <img src="et_fint_bilde.jpg" alt="En tekst som beskriver bilde for de som ikke ser"/>
+```
+--
 ```html
   <a href="side2.html"></a>
-
-  <img src="bilde.png" />
-
-  <input type="checkbox" />
 ```
-
 ---
-
 ```html
   <!doctype html>
   <html lang="en">
@@ -455,6 +484,17 @@ vis at man kan kjøre en fil i chorme
 vis hvordan devtools fungerer
 
 
+---
+class:
+
+# Oppgave
+
+
+<a href="https://jsfiddle.net/ingvilin/oqtv1md0/">Gjør HTML-en mer semantisk riktig ved å ta i bruk andre tags</a>
+
+<a href="http://html5doctor.com/downloads/h5d-sectioning-flowchart.png">Hint</a>
+???
+https://jsfiddle.net/ingvilin/t9613yj8/1/
 ---
 class:
 
@@ -1979,25 +2019,31 @@ class: middle center
     button {
         transition-property: all, height, width, background-color;
 --
-        transition-delay: 0s;
---
         transition-duration: 0s;
 --
-        transition-timing-function: ease, ease-in, ease-out, ease-in-out;
+        transition-timing-function: ease, ease-in, ease-out, ease-in-out, linear, cubic-bezier;
+--
+        transition-delay: 0s;
+
     }
 ---
 class: middle center
+## På kortformat
 ```css
     div {
         transition: <property> <duration> <timing-function> <delay>;
     }
 ```
 --
+##Når *property* endrer seg, bruk *duration*-sek. til å animere den
+---
+class: middle center
+##Eksempel:
 ```css
     button: {
         background-color: blue;
         width: 200px;
-        transition: background-color 4s ease-in 1s, width ease;
+        transition: background-color 4s ease-in 1s, width linear;
     }
 
     button:hover {
@@ -2012,6 +2058,7 @@ class: middle center
 Brukes til å endre koordinatsystemet
 ---
 class: middle center
+
 ```css
         button {
             transform: translate /*flytte elementet opp/ned/sideveis*/
@@ -2021,6 +2068,15 @@ class: middle center
         }
 ```
 <a href="https://css-tricks.com/almanac/properties/t/transform/">Eksempler</a>
+---
+class:
+#Transitionoppgaver
+* <a href="https://jsfiddle.net/ingvilin/1equsnLy/1/">Oppgave1</a>
+* <a href="https://jsfiddle.net/ingvilin/gw4bqd15/">Bonusoppgave</a>
+
+???
+fasit: https://jsfiddle.net/ingvilin/qoggpb7x/
+
 ---
 class: middle center
 # DevTool
@@ -2587,7 +2643,7 @@ class: center middle bekk-top
 
 
 
-    </textarea>
+        </textarea>
     <script src="https://cdn.rawgit.com/bekk/remark/master/vendor/remark.min.js" type="text/javascript"></script>
     <script type="text/javascript">
       var slideshow = remark.create({
