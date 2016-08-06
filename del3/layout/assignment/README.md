@@ -63,7 +63,7 @@ Tips: fra del2 gjorde vi requester ved å bruke fetch:
 Forventet resultat er en liste med annonser hvor hver annonse inneholder en ny liste (url) med urler til annonsebildene, og et objekt (details) som inneholder infromasjon om annonsen. Denne informasjonen skal brukes i neste oppgave til å vise annonsene på siden.
 
 ### Oppgave 2 - vis bildene
-1. I script.js lager du en ny funksjon som heter lagAnnonser(annonser) som tar inn alle annonsene. Denne funksjonen skal returnere html-markup. Forelløpig skal den kun vise første bilde for hver annonse.
+1. I script.js lager du en ny funksjon som heter lagAnnonser(annonser) som tar inn alle annonsene. Denne funksjonen skal returnere html-markup. Foreløpig skal den kun vise første bilde for hver annonse.
 2. Lag en for-løkke som for hver annonse lager en `<div>` med en `<img>` inni.
 3. src-attributtet til img-elementet skal settes til den første url-en i annonsen.
 4. I index-html lag et `<main>`-element
@@ -100,29 +100,29 @@ var html = `
 tips: her er det lurt å tenke litt på overskriftshiearki (h1,h2,h3) - hvilken informasjon du mener er viktigst osv.
 
 ### Oppgave 4 - styling
-1. Du står helt fritt til å designe annonsene som du selv vil, men det er ingenting i veien for å kopiere løsningsforslaget. I løsningsforslaget så er det brukt css som ikke har blitt brukt tidligere bla hvordan posisjonere elementer absolutt. Se gjerne nedenfor for tips til fremgangsmåte.
-2. Gjør nødvendige tilpasninger så det også ser fint ut på mobil
+1. Du står helt fritt til å designe annonsene som du selv vil, men det er ingenting i veien for å kopiere løsningsforslaget. I løsningsforslaget er det brukt en del css som vi ikke har gått gjennom tidligere, bla har vi brukt "absolutt posisjonering" av elementer. Se gjerne nedenfor for tips til fremgangsmåte.
+2. Gjør nødvendige tilpasninger så det også ser fint ut på mobil. Hvis du bruker chrome kan du enkelt få mobilvisning ved å trykke på mobil/tablet-ikonet øverst i venstre hjørnet av inspect-vinduet.
 
 ## Bildekarusell
-Uavhengig om man har valgt å løse oppgaven med eller uten javascript kan man lage en bildekarusell av annonsene - men dog med javascript ;) Tanken her er at man skal kunne trykke på piler for å se annonsene.
+Uavhengig av om man har valgt å løse oppgaven med eller uten javascript kan man lage en bildekarusell av annonsene - men dog med javascript ;) Tanken her er at man skal kunne trykke på piler for å se annonsene.
 
 ### Oppgave 1 - vise alle bildene
 1. Lag en ny funksjon som heter lagBilder(annonse) som tar inn én annonse.
 2. Lag en for-løkke som itererer over alle url-ene i annonsen og lager html-markup av bildene (akkurat som du gjorde i lagAnnonser).
-3. return markupen som blir laget
-4. I stedet for å lage ett bilde i lagAnnonser kaller du heller lagBilder for å få bilde-markupen
-5. nå skal alle bildene i hver annonse vises.
+3. Returner markupen som blir laget.
+4. I stedet for å lage ett bilde i lagAnnonser, kaller du heller lagBilder for å få bilde-markupen.
+5. Nå skal alle bildene i hver annonse vises.
 
 ### Oppgave 2 - skjule alle bildene utenom det første
 1. I lagBilder-funksjonen vil du sette på en klasse "hidden" på alle bilder utenom det første for å skjule bildene
-2. I css-filen må du sørge for at hidden-klassen skjuler bildene som har denne klassen
-tips: for å skjule elementer kan man sette display:none
+2. I css-filen må du sørge for at hidden-klassen skjuler bildene som har denne klassen.
+Tips: for å skjule elementer kan man sette display:none
 
 ### Oppgave 3 - legg til pil-ikoner
 1. For at brukeren skal skjønne at det går an å bla i bildene må det finnes noe som vedkommende kan klikke på. Legg til et "bla-fremover"-ikon og "bla-bakover"-ikon. Under img-mappen ligger to pil-ikon som kan brukes.
-2. utvid lagAnnonser-funksjonen med de to nye bilde-ikonene.
-3. Style de nye ikonene så de plasseres fint for hver annonse
-tips: for å ta i bruk bilde-ikonene som ligger i img-mappen setter man src-attributtet til filnavnet -
+2. Utvid lagAnnonser-funksjonen med de to nye bilde-ikonene.
+3. Style de nye ikonene så de plasseres fint for hver annonse.
+Tips: for å ta i bruk bilde-ikonene som ligger i img-mappen setter man src-attributtet til filnavnet -
 ```html
     <img src="left.png" />.
 ```
@@ -131,13 +131,13 @@ Vil man bruke noen andre ikoner kan disse legges under img-mappen.
 ### Oppgave 3 - bla fremover og bakover
 1. Legg til en eventListener som lytter på click-eventer på main-elementet
 2. Sjekk at elementet som ble klikket på er ett av pilikonene
-3. Sjekk om elementet som ble klikket på er fremover-ikonet, sett på klassen hidden, finn neste elementent og fjern klassen hidden for at denne skal vises.
+3. Sjekk om elementet som ble klikket på er fremover-ikonet, sett på klassen hidden, finn neste element og fjern klassen hidden for at denne skal vises.
 4. Sjekk om elementet som ble klikket på er bakover-ikon, sett på klassen hidden, finn forrige element og fjern klassen hidden for at denne skal vises
 
-tips:
-1. eventlistenere: main.addEventListener("click", function (event) {...}
-2. elementet som blir klikket på kan hentes ut sånn: var element = event.target;
-3. klasser kan legges til og fjernes sånn: element.classList.remove("enklasse") og element.classList.add("enklasse")
+Tips:
+1. Eventlistenere: main.addEventListener("click", function (event) {...}
+2. Elementet som blir klikket på kan hentes ut sånn: var element = event.target;
+3. Klasser kan legges til og fjernes sånn: element.classList.remove("enklasse") og element.classList.add("enklasse")
 4. For å sjekke om et element har en klasse: element.classList.contains("enklasse")
 
 Er det mer tid til overs kan du utvide html-siden med f.eks filtervalg, eller klikke på en annonse og åpne denne og vise mer informasjon, eller ta en titt på en av de andre oppgavene.
@@ -153,10 +153,10 @@ Av og til ønsker man å plassere elementer oppå hverandre eller faste steder p
         left: 0
     }
 ```
-Endrer jeg right til 0 i stedet blir elementet vist på høyresiden. Det viktigste når det gjelder absolutt-posisjonering er å sette hvilket foreldreelement som skal bestemme "koordinatsystemet" - altså hvor topp, bunn, venstre og høyre er. Som oftes vil man unngå å måtte plassere elementer i forhold til hele vinduet man ser i nettleseren men heller innen for foreldrelementet sitt. Da er man sikker på at elementet alltid står riktig selv om foreldreelementet vil endre seg. Ved å sette position:relative på et foreldreelement så vil top:0 ikke lenger være oppe i toppen av siden men toppen av foreldrelementet. Se gjerne https://developer.mozilla.org/en-US/docs/Web/CSS/position for mer informasjon og eksempler.
+Endrer jeg right til 0 i stedet blir elementet vist på høyresiden. Det viktigste når det gjelder absolutt-posisjonering er å sette hvilket foreldreelement som skal bestemme "koordinatsystemet" - altså hvor topp, bunn, venstre og høyre er. Som oftest vil man unngå å måtte plassere elementer i forhold til hele vinduet man ser i nettleseren. Det er bedre å plassere de i forhold til foreldrelementet. Da er man sikker på at elementet alltid står riktig selv om foreldreelementet vil endre seg. Ved å sette position:relative på et foreldreelement så vil top:0 ikke lenger være oppe i toppen av siden, men toppen av foreldrelementet. Se gjerne https://developer.mozilla.org/en-US/docs/Web/CSS/position for mer informasjon og eksempler.
 
 ### Tegne sirkler
-Hvis man skal tegne sirkler kan man bruke en css-egenskap som heter border-radius for å få avrundet hjørner (https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius).  Setter man denne til 50% vil hjørnene bli så avrundet at det vil se ut som en sirkel/ellipse. Om den blir seendes ut som en fin sirkel avhengiger av flere egenskaper. For at sirkelen skal være rundt uansett innhold kan følgende triks brukes
+Hvis man skal tegne sirkler kan man bruke en css-egenskap som heter border-radius for å få avrundet hjørner (https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius).  Setter man denne til 50% vil hjørnene bli så avrundet at det vil se ut som en sirkel/ellipse. Om den blir seendes ut som en fin sirkel avhenger av flere egenskaper. For at sirkelen skal være rundt uansett innhold kan følgende triks brukes
 ```css
     border-radius: 50%; //for å få avrundet hjører
     line-height: 60px; // linjeavstand samme som høyden (gitt at det er tekst i sirkelen)
@@ -166,7 +166,7 @@ Hvis man skal tegne sirkler kan man bruke en css-egenskap som heter border-radiu
     background-color: #333333; // bakgrunnsfarge for å skille seg ut fra resten
 ```
 ### Rendre bilder
-For å ta være på bilde-ration men allikevel sette en bredde eller høyde på bilde-containeren kan man bruke:
+For å ta vare på bilde-ration men allikevel sette en bredde eller høyde på bilde-containeren kan man bruke:
 ```css
     img {
         max-width: 100%;

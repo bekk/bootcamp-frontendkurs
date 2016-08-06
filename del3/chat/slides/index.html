@@ -396,9 +396,9 @@ Den medfølgende CSSen forventer at meldinger blir gjort om til HTML med følgen
 
 # Oppgave 4
 
-* Lag en funksjon som tar inn en melding og legger til HTML lignende forrige slide øverst i `#messages`-elementet
-* I `onmessage` funksjonen, sjekk om typen er av `messages` og send i så fall hver melding til funksjonen du nettopp lagde.
-* Om typen er av `message`, send den til samme funksjon
+* Lag en funksjon `renderMessage` som tar inn en melding og lager HTML for å vise denne  (se eksempel på forrige slide) øverst i `#messages`-elementet
+* I `onmessage` funksjonen, sjekk om typen er av `messages`. Hvis det er tilfelle, send hver melding inn til funksjonen du nettopp lagde.
+* Om typen er av `message`, skal den også sendes til `renderMessage`.
 
 Om alt har gått riktig, skal man i det man trykker join nå se de siste meldingene. Tidspunktet kan
 kanskje være litt feil og stygt, det fikser vi senere.
@@ -594,7 +594,7 @@ Om en bruker har byttet navn får man nytt og gammelt navn
 # Oppgave 6
 
 * Når det kommer data av typen `users` fra serveren, hent ut navnene til de påloggede brukerne og vis dem i `#users`-elementet
- * For å få riktig styling legg til HTML på formen `<span class="name">Navn</span>` for hver bruker
+ * For å få riktig styling, legg til HTML på formen `<span class="name">Navn</span>` for hver bruker
 
 Skal nå kunne se hvem som er tilstede. Åpne flere vinduer og join og lukk vinduer og sjekk at listen over brukere endres.
 
@@ -653,7 +653,7 @@ websocket.onmessage = function(event) {
 # Oppgave 7
 
 * Sjekk hvilken action det er når det kommer inn data av typen `users` og vis en passende melding i chaten.
- * Blir stylet riktig om HTMLen er på formen `<div class="connection">${message}</div>`
+ * Blir stylet riktig om HTMLen er på formen `<div class="connection">Melding</div>`
 
 F. eks. kan det når en bruker joiner komme en melding om "Mats har joinet",
 eller om det var navnebytte "Mats har byttet navn til Mats2".
@@ -716,10 +716,10 @@ websocket.onmessage = function(event) {
 # Datoer i Javascript
 
 Datoene så langt er på formen `2016-04-05T19:34:54.406Z`, noe som ikke er veldig pent og troligvis feil med noen timer.
-Z-en bakerst betyr at det er i UTC-tidssone, mens det mest logiske er det å vise det i riktig tid for brukeren.
+Z-en bakerst betyr at det er i UTC-tidssone, mens det mest logiske er å vise det i riktig tid for brukeren.
 
-Javascript har innebygd støtte for datoer, via `Date`-klassen. Om man sender inn en dato-tekststreng på formen over, vil
-den bli tolket automatisk til tidssonen til brukeren av nettleseren. Om man ikke sender inn noen ting får man datoen/tidspunktet
+Javascript har innebygd støtte for datoer, via `Date`-klassen. Om man sender inn en dato-tekststreng på formen over, vil nettleseren
+automatisk kovertere den til tidssonen til brukeren. Om man ikke sender inn noen ting får man datoen/tidspunktet
 her og nå. [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) har info om mange funksjoner som
 kan kalles på date-objekter.
 
