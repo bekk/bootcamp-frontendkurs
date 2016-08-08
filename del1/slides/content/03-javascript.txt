@@ -1,0 +1,352 @@
+
+
+class: center middle
+
+#JavaScript
+
+---
+
+class: middle center
+
+JavaScript er et programmeringspråk
+
+---
+
+class: middle center
+
+ ... men det har ingenting med Java å gjøre.
+
+---
+
+# JavaScript vs. Java
+
+* Dynamisk språk vs. kompilert språk
+* Dynamisk typing vs. statisk typing
+* Prototypebasert arv vs. klassebasert arv
+
+---
+
+
+#JavaScript
+
+```javascript
+  console.log('Hello world!'); // Hello world!
+```
+---
+
+```javascript
+  var num = 1;
+  var str = 'Bekk';
+  var arr = [1, 2, 3, 4, 5];
+  var obj = {
+    key:  'value',
+    key2: 'value2'
+  };
+```
+---
+
+```javascript
+  function hello(name) {
+    return `Hello, ${name}!`;
+  }
+
+```
+---
+```javascript
+  function hello(name) {
+    return `Hello, ${name}!`;
+  }
+
+  var hello = function(name) {
+    return `Hello, ${name}!`;
+  }
+
+  hello('Bob'); // Hello, Bob!
+```
+---
+
+# Typer
+
+Vi kan bruke **typeof**-operatoren for å sjekke type.
+
+    typeof {};          // 'object'
+
+--
+    typeof [];          // 'object'     WTF?
+
+--
+    typeof 1;           // 'number'
+
+--
+    typeof '';          // 'string'
+
+--
+    typeof true;        // 'boolean'
+
+--
+    typeof false;       // 'boolean'
+
+--
+    typeof minVar       // 'undefined'
+
+--
+
+    typeof null;        // 'object'     WTF?
+
+---
+# Variabler, objekter og datatyper
+
+En samling av "key-value"
+
+    var obj = {
+      key1: 'value1',
+      key2: 13,
+      navn: 'ingvild'
+    };
+--
+    obj.key1;         // 'value1'
+--
+    obj['key2'];      // 13
+--
+    obj.key3;         // undefined
+--
+    delete obj.key1;
+    obj.key1;         // undefined
+
+???
+
+I Java måtte man typisk først ha laget en klasse og definert at objekter av denne typen vil ha disse feltene.
+I JS kan man bare slenge på og ta bort felter som man ønsker, runtime.
+
+Dette gjør det lett å referere til felter som ikke finnes og dermed skape trøbbel.
+
+---
+
+# Variabler, objekter og datatyper
+
+Value kan være hva som helst.
+
+    var obj = {
+        nestedObj: {
+            nestedProperty: 'en feit streng'
+        },
+        log: function() {
+            console.log('Hello World!');
+        }
+    };
+
+    obj.log(); // Kaller på metoden
+    obj.nestedObj.nestedProperty // Nøster oss nedover
+
+---
+  #Oppgaver - få testene grønne
+   1. https://jsfiddle.net/ingvilin/DuYAc/104/
+   2. https://jsfiddle.net/ingvilin/p0whx7w9/
+   3. https://jsfiddle.net/ingvilin/DuYAc/151/
+   4. https://jsfiddle.net/ingvilin/DuYAc/109/
+
+---
+class: center middle
+
+# JavaScript i nettleseren
+---
+
+class: middle center
+
+Ok - så vi bruker javascript til å skape dynamisk oppførsel på nettsidene våre, og språket er fullt av black magic - men hvordan <em>gjør</em> vi det faktisk?
+
+---
+
+# Document Object Model
+```html
+    <!doctype html>
+    <html>
+     <head>
+      <meta charset="utf-8">
+      <title>All About Cats</title>
+      <style type="text/css">...</style>
+     </head>
+     <body>
+      <h1>CATS!</h1>
+      <img id="mainpicture" src="http://placekitten.com/200/300">
+      <p>So cute!</p>
+      <ul>
+       <li class="catname">Lizzie</li>
+       <li class="catname">Daemon</li>
+      </ul>
+     </body>
+    </html>
+```
+---
+
+class: center
+
+# Document Object Model
+
+![dom-tree](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/DOM.png)
+
+---
+
+# Document Object Model
+
+##Javascript gir oss et rikt API mot DOM-en via [*document*](https://developer.mozilla.org/en/DOM/document)-objektet
+--
+
+Hvis HTML-en inneholder dette...
+```html
+    <img id="mainpicture" src="http://placekitten.com/200/300">
+```
+
+--
+... så kan vi aksessere den slik
+
+    var img = document.querySelector('#mainpicture');
+
+---
+# JavaScript DOM-api
+```html
+<div id="boks">
+    <a href="mer.html">Klikk her</a> for å lære mer
+</div>
+ ```
+```javascript
+  var boks = document.querySelector('#boks');
+```
+--
+
+```javascript
+  boks.innerHTML;
+  // <a href="mer.html">Klikk her</a> for å lære mer
+```
+--
+
+```javascript
+  boks.textContent;
+  // Klikk her for å lære mer
+```
+
+--
+
+```javascript
+  var text = document.querySelector('#boks').textContent;
+  // Klikk her for å lære mer
+```
+---
+class: middle center
+
+# DevTool
+
+## ⌘ + ⌥ + i &nbsp;/&nbsp; ctrl + ⇧ + i
+
+???
+Vis document i consolet
+---
+# JavaScript DOM-api
+
+```javascript
+  document.querySelector('#boks').addEventListener('click', function() {
+    // Gjør noe gøy når boks har blitt trykket på!
+  });
+```
+
+---
+# JavaScript DOM-api
+
+```javascript
+  document.querySelector('#danse-ape').addEventListener('click', function() {
+    var el = document.querySelector('#danse-ape');
+    var src = el.getAttribute('src').replace('.png', '.gif');
+    el.setAttribute('src', src);
+  });
+```
+
+<div class="col" style="overflow: hidden;">
+  <img id="danse-ape" src="resources/danse-ape.png" style="
+    display:block;
+    margin:-100px auto 0;
+    cursor:pointer;" />
+</div>
+
+???
+Nevn at vi gjør to oppslag, og at vi skal lære senere hvor unngå det
+
+---
+
+
+class: center middle
+
+![](resources/mozilla-developer-network.jpg)
+.source[https://developer.mozilla.org]
+
+---
+
+class: center middle
+
+![](resources/mozilla-developer-network-result.png)
+.source[https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove]
+
+---
+
+class: center middle
+
+![](resources/remove-element-search.png)
+
+---
+
+class: center middle
+
+![](resources/remove-element-result.png)
+
+---
+# JavaScript-filer
+```html
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <title>En enkel HTML-side</title>
+        <script type="text/javascript">
+          console.log('her er mitt lille JavaScript!');
+       </script>
+    </head>
+
+    <body>
+      <h1>Her er min fantastisk enkle HTML-side</h1>
+
+      <script type="text/javascript">
+        console.log('her er mitt andre lille JavaScript!');
+      </script>
+    </body>
+  </html>
+```
+
+???
+Forklar når scriptet blir kjørt
+
+---
+# JavaScript-filer
+
+## `fil.html`:
+```html
+<body>
+  <script type="text/javascript" src="heia.js"></script>
+</body>
+```
+## `heia.js`:
+```js
+console.log('heia');
+```
+---
+
+class: split
+
+#Oppgave
+
+* Forsett på løsningen fra forrige oppgave
+* Legg til en unik id på `output` og `button` elementene
+* Legg til click event handler som legger til 1 på tallet i `output` når man trykker på + knappen
+* Legg til click event handler som trekker fra 1 på tallet i `output` når man trykker på - knappen
+
+
+<iframe src="../solutions/2/teller.html" style="width: 50%; background-color:#fff" />
+
+---

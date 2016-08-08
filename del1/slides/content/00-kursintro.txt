@@ -1,0 +1,53 @@
+exclude:true
+class: front-page
+# Frontendkurs
+## NTNU
+
+<span class="today-date"></span>
+---
+class: front-page
+# Frontendkurs
+## Nyansatte
+
+<span class="today-date"></span>
+???
+Hvem vi er, pauser/lunsj, formål med dagen, nytt kurs mer praktisk rettet, gi beskjed om for lett (gamle del 3, funksjonell, kanskje noe relevant for prosjekt),
+
+---
+
+class: middle center center-img background-white
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/sublime-logo.png)
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/git-logo.png)
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/chrome-logo.jpeg)
+
+---
+
+#Frontendkurs
+
+##Repo
+<div style="font-size: 2em">
+  <a href="http://tiny.cc/bekkfrontendkurs">http://tiny.cc/bekkfrontendkurs</a>
+</div>
+<br>
+<br>
+<div style="font-size: 2em">
+  <a href="https://github.com/bekk/bootcamp-frontendkurs">github.com/bekk/bootcamp-frontendkurs</a>
+</div>
+
+---
+
+class: fullscreen
+
+![HTML](resources/prosjektstruktur.png)
+
+<div class="overlay loud" style="top: 55%">
+<p>
+    Prosjektstruktur
+    <small style="display:block;">Presentasjon, oppgaver og løsninger</small>
+</p>
+</div>
+
+---

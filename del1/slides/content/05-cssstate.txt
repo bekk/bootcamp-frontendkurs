@@ -1,0 +1,224 @@
+
+
+
+
+class: center middle
+
+#Element State
+## - hva er det?
+
+---
+class:
+#Element state
+
+* :active
+* :checked
+* :disabled
+* :first
+* :first-child
+* :focus
+* :hover
+* :required
+* :valid
+* :visited
+
+---
+
+class: center middle
+
+##Hva skal vi med det?
+
+---
+
+class: center middle
+
+<button class="en-knapp">AVBRYT</button>
+
+---
+class: center middle
+
+<button class="en-knapp">AVBRYT</button>
+<button class="hvr-wobble-horizontal">AVBRYT</button>
+<button class="hvr-wobble-vertical">AVBRYT</button>
+
+---
+class: center middle
+
+<a href="http://ianlunn.github.io/Hover/">Hover-effekter</a>
+
+---
+class: center middle
+
+##Focus
+
+---
+class: center middle
+##Focus
+<button class="en-knapp">AVBRYT</button>
+<button class="hvr-wobble-horizontal">AVBRYT</button>
+<button class="hvr-wobble-vertical">AVBRYT</button>
+
+---
+class: center middle
+##Outline: 1px solid blue
+
+---
+class: middle center
+
+## Hvordan brukes element state?
+
+```css
+    selector:pseudo-class {
+        property: value;
+    }
+```
+---
+class: middle center
+
+## Hvordan brukes element state?
+
+```css
+    button:hover {
+        background-color: red;
+    }
+```
+
+---
+class: middle center
+
+## Hvordan brukes element state?
+
+```css
+    button:focus {
+        outline: 1px solid orange;
+    }
+```
+
+---
+class: middle center
+
+## Animasjoner
+---
+class: middle center
+## Animasjoner
+-kommer av det latinske ordet Anima som betyr sjel
+
+???
+Helt fra gammelt av har man prøvd å gi materialistiske ting sjel
+---
+class: center middle
+
+<iframe style="width: 100%; height: 100%;" src="http://www.burlingtonnews.net/burlington_ufo_center.html" />
+
+???
+I starten av weben ble animasjoner stortsett brukt som et "morsomt" element eller til pynt
+---
+class: center middle
+
+<iframe style="width: 100%; height: 100%;" src="http://www.dpgraph.com/" />
+
+---
+class: center middle
+
+![](resources/content-requires-flash.jpg)
+???
+Som brukte mye ressurser
+---
+class: center middle
+## Nå kan det meste gjøres med CSS3
+---
+class: center middle
+<a href="http://www.kikk.be/2015"> http://www.kikk.be/2015 <a/>
+
+???
+Mens nå brukes det mye innenfor UX - hjelpe å vise hvor man kan interagere, etterligner menneskelig oppførsel og bevegelser fra naturen (tyngdekraft, bølger, magneter osv)
+                så man lettere skal kunne forstå noe digitalt, spiller mye på psykologi
+---
+
+<iframe style="width: 100%; height: 100%;" src="http://tympanus.net/Development/HoverEffectIdeas/"/>
+
+---
+class: middle center
+## transition gir oss mulighet til å kontrollere hastigheten på en animasjon
+---
+class: middle center
+
+## transition
+
+    button {
+        transition-property: all, height, width, background-color;
+--
+        transition-duration: 0s;
+--
+        transition-timing-function: ease, ease-in, ease-out, ease-in-out, linear, cubic-bezier;
+--
+        transition-delay: 0s;
+
+    }
+---
+class: middle center
+## På kortformat
+```css
+    div {
+        transition: <property> <duration> <timing-function> <delay>;
+    }
+```
+--
+##Når *property* endrer seg, bruk *duration*-sek. til å animere den
+---
+class: middle center
+##Eksempel:
+```css
+    button: {
+        background-color: blue;
+        width: 200px;
+        transition: background-color 4s ease-in 1s, width linear;
+    }
+
+    button:hover {
+        background-color: red;
+        width: 400px;
+    }
+```
+---
+class: middle center
+## Transform
+???
+Brukes til å endre koordinatsystemet
+---
+class: middle center
+
+```css
+        button {
+            transform: translate /*flytte elementet opp/ned/sideveis*/
+                       scale,
+                       rotate,
+                       skew /*tilte elementet*/
+        }
+```
+<a href="https://css-tricks.com/almanac/properties/t/transform/">Eksempler</a>
+---
+class:
+#Transitionoppgaver
+* <a href="https://jsfiddle.net/ingvilin/1equsnLy/1/">Oppgave1</a>
+* <a href="https://jsfiddle.net/ingvilin/gw4bqd15/">Bonusoppgave</a>
+
+???
+fasit: https://jsfiddle.net/ingvilin/qoggpb7x/
+
+---
+class: middle center
+# DevTool
+
+## ⌘ + ⌥ + i &nbsp;/&nbsp; ctrl + ⇧ + i
+
+---
+class: split
+# Oppgave
+## 1.Endre bakgrunnsfarge på knappene ved hover
+## 2.Legg til fokusmarkering for tabbing
+## 3. Endre musepeker til en hånd ved hover
+
+<iframe src="../solutions/5/nedteller.html" style="width: 50%" />
+
+---

@@ -1,0 +1,320 @@
+
+class: center middle
+
+# CSS
+## Cascading Style Sheets
+
+???
+
+Cascading Style Sheets, eller CSS, tar seg av stylingen av HTMLen.
+
+---
+
+# CSS
+
+```css
+  selector {
+    property: value;
+    property: value;
+  }
+```
+
+???
+
+Det gjøres ved hjelp av et sett med regler for hvordan ting skal styles.
+
+En slik regel har en selector, som sier HVA det er som skal styles, og så inni krøllparanteser en liste over hvordan man ønsker det skal styles. Denne listen består da av egenskaper og deres verdier. Separert med semikolon.
+
+
+--
+
+&nbsp;
+
+```css
+  div {
+    background: white;
+    font-size: 32px;
+    color: red;
+  }
+```
+```html
+<div>Hei på deg</div>
+```
+
+???
+
+I dette eksempelet sier selectoren at disse egenskapene skal gjelde for alle diver i html-dokumentet. Og egenskapene sier da at disse divene skal ha hvit bakgrunn og stor, rød tekst.
+
+Med HTMLen under, vil det bli seendes slik ut
+
+--
+
+&nbsp;
+
+<div style="
+ background: white;
+ color: red;
+ font-size: 32px;
+">Hei på deg</div>
+
+---
+
+#CSS - Hvordan?
+
+
+Søketips:
+`<det du vil style> + css + mdn`
+
+```css
+selector {
+  background: #ff0000;
+  color: red;
+  border-color: rgba(255, 0, 0, 0.3);
+
+  width: 200px;
+  width: 50%;
+  width: 20rem;
+  width: 25vw;
+
+  margin: 5px;
+  padding: 10px;
+  opacity: 0.5;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: blue;
+  border: 1px solid blue;
+}
+```
+
+???
+
+søke etter "bold text css mdn"
+
+Her er et knippe eksempler. Som vist på toppen finnes det flere måter å definere farger på. Tre er vist her, en hexcode, navn eller rgba med gjennomsiktighet.
+
+Av lengder finnes det også flere enheter.
+
+* Piksler er rett frem.
+* rem, r=relative til en størrelse man definerer selv. Responsiv
+* %, i forhold til parent container ved bredde
+* vw
+
+Mange egenskaper gjelder 4 sider, sånn som margin og border, men kan også definere per side.
+
+Shorthand syntax
+
+
+
+---
+
+
+#CSS - Hva?
+
+##Tag-selector
+
+```css
+body {
+  background: red;
+}
+
+button {
+  color: blue;
+}
+```
+```html
+<body>
+  Rød bakgrunn på hele siden.
+  <button>Jeg har blå tekst</button>
+  <button>Jeg har også blå tekst</button>
+</body>
+```
+
+???
+
+Så, selektorer. Hvordan velge hva som skal styles? Viste nylig et eksempel på hvordan man stylet alle divs på en side, og det var en såkalt tag-selector.
+
+En tag-selector er rett og slett bare navnet på en html-tag, og stylingen vil da gjelder for alle html-tags av den typen.
+
+I eksempelet her selecter vi på html-taggene body og button, og sier hvordan disse skal se ut.
+
+---
+
+#CSS - Hva?
+
+##Klasse-selector
+
+```css
+.btn-danger {
+  background: red;
+}
+
+.btn-ok {
+  background: green;
+}
+```
+```html
+<button class="btn-danger">Slett!</button>
+<button class="btn-ok">Lagre!</button>
+```
+
+???
+
+Ønsker jo ikke alltid at alle knapper skal se like ut. F. eks vil man kanskje at en slett-knapp skal være litt skummel å trykke på. Da kan man lage en klasse-selector.
+
+Istedet for å skrive
+
+De begynner med punktum, og så spesifiserer man i htmlen at man ønsker at dette elementet skal bruke stylingen fra denne klassen.
+
+---
+
+#CSS - Hva?
+
+##Id-selector
+
+```css
+#unikid {
+  color: #ff00ff;
+}
+```
+```html
+<div id="unikid"> ... </div>
+```
+
+???
+
+Steg 2 er å fortelle nettleseren hva det er som skal styles. Det gjør man ved å skrive en selektor som "treffer" det man ønsker å style. Det kan enten være noe som treffer alle html-tager av en type, f. Eks. Body-tagen eller alle knapper.
+
+Eller så kan man style ting mer spesifikt, ved å lage såkalte klasser, som man så kan bruke i htmlen. En selector for en klasse lager man ved å sette et punktum foran.
+
+Tredje måten er å selecte ETT spesifikt html-element med en gitt id, ved å bruke firkanttegn. En slik css-regel blir ikke veldig gjenbrukbar. I praksis styler man ofte tags på en generell måte, og så lager man klasser med mer spesifikke regler.
+
+---
+
+#CSS - Avanserte selectorer
+
+
+a og b kan være `tag`, `.klasse` eller `#id`
+
+```css
+a {...}                             /* vanlig selector, .btn-ok */
+
+a b {...}                           /* nestede, b må være inni a, .boks .heading */
+
+a > b {...}                         /* nestede, b med a som nærmeste parent, .boks > .heading */
+
+ab  {...}                           /* må ha både a og b, button.btn-ok, .btn.btn-ok */
+
+a:state {...}                       /* a:hover */
+
+a:last-child {...}                  /* siste av parent, li:last-child */
+
+a:nth-child(2n+1) {...}             /* alle n som matcher uttrykket */
+
+a[attributt="verdi"] {...}          /* matcher på attributt, a:[href^="https://"] */
+
+```
+
+???
+
+Ikke alle brukes så ofte i praksis
+
+---
+
+
+#CSS - Avanserte selectorer
+
+
+
+
+```html
+.klasse1 .klasse2 { ... } /* alle av type klasse2 som ligger inni klasse1  */
+
+<div class="klasse1">
+  <span class="klasse2">meg</span>
+</div>
+<span class="klasse2">ikke meg</span>
+```
+
+```html
+.klasse1.klasse2 { ... } /* element som har begge klassene */
+
+<div class="klasse1 klasse2">meg</div>
+```
+
+```html
+button.klasse1 { ... } /* alle knapper som har klasse 1 */
+
+<button class="klasse1">meg</button>
+<a class="klasse1">Ikke meg</a>
+```
+
+
+---
+
+
+# CSS - Hvor?
+
+I HTML-fila:
+
+```html
+<head>
+  <!-- ... -->
+  <link href="style.css" type="text/css" rel="stylesheet">
+  <!-- ...    ^^^^^^^^^ -->
+</head>
+```
+
+&nbsp;
+
+En fil med navn `style.css`:
+
+```css
+body {
+  background: red;
+}
+```
+
+???
+
+For at nettleseren skal kunne bruke css-reglene man har skrevet, må man fortelle den for disse reglene finnes. Det gjøres ved at man i head-delen av html-fila peker til hvor css-filen finnes.
+
+Når nettsiden lastet vil så nettleseren søke opp filen det pekes til, og utføre all styling på html-dokumentet.
+
+---
+
+
+class: center middle
+
+#Devtools
+
+## ⌘ + ⌥ + i &nbsp;/&nbsp; ctrl + ⇧ + i
+
+???
+
+* Hvordan se på css
+* Kjapt teste redigering av css property
+
+---
+
+class: split
+
+#Oppgave
+
+* Lag en css-fil og link til den i HTML-fila
+* Sett en bakgrunnsfarge på nettsiden
+* Endre font, farge og skriftstørrelse på teller-verdien
+* Endre størrelse, bakgrunnsfarge, border/ramme og tekstfarge på knappene
+
+
+## Bonus
+
+* http://flukeout.github.io/
+
+
+
+<iframe src="../solutions/3/teller.html" style="width: 50%" />
+
+
+
+---

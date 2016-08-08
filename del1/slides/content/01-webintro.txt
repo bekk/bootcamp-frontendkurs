@@ -1,0 +1,223 @@
+class: center middle red
+
+![mac_pc](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/mac_pc.png)
+
+# Web: write once, run anywhere
+
+???
+
+Mer og mer av appene vi bruker er nå en webapplikasjon, dvs en webside med masse javascript og ajax som får ting til å skje.
+
+Før vi knaller igang med teknologien er det hensiktsmessig å snakke litt mer om hvor weben kommer fra for å forstå hvorfor ting er som det er.
+
+---
+
+class: fullscreen middle
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_uglysite_ie.jpg)
+
+---
+
+class: center middle background-white
+
+![mac_pc](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/github-repos.png)
+
+???
+
+En annen ting som har bidratt til den store utviklingen på web er JavaScript - webens eget programmeringspråk.
+Vi skal gå mer i detalj i dette senere idag, men i korte trekk har språket veldig få begrensninger og er veldig utvidbart.
+Dette har ført til en haug med rammeverk, nye måter å tenke på og stor innovasjon.
+Som vi ser JavaScript by far det mest populære språket på f.eks GitHub.
+
+Tar man samme statistikk fra StackOverflow får vi samme resultat.
+
+---
+
+class: middle center red
+
+![browsers](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browsers.png)
+
+## Nettleserstøtte og standardisering
+
+.source[http://en.wikipedia.org/wiki/History_of_the_web_browser ]
+
+???
+
+- Mozilla Firefox; Lansert i 2002 som en spinoff av hele Mozilla-prosjektet
+- Opera: Kom i 1996, noe populær på mobil, men ikke særlig mye i bruk på desktop
+- Chrome: Kom i 2008
+
+---
+
+class: middle center
+
+# Kompabilitet
+
+---
+
+class: middle center
+
+# Graceful degradation
+
+???
+
+Problemer med kompabilitet kan løses på mange måter...
+
+---
+
+class: fullscreen middle inverse
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_noflash.jpeg)
+
+---
+
+class: middle
+
+```html
+
+    <noscript>
+      Nettleseren støtter ikke JavaScript. Synd for deg. Snakkes!
+    </noscript>
+```
+---
+
+class: middle
+
+```html
+    <script src="fancy-pants-supercool-flyout-menu.js"></script>
+
+    <noscript>
+      <ul>
+          <li>
+              <a href="side1.htm">Side 1</a>
+          </li>
+          <li>
+              <a href="side2.htm">Side 2</a>
+          </li>
+      </ul>
+    </noscript>
+```
+---
+
+class: middle center
+
+# Progressive enhancement
+
+???
+
+Feature detection med JS, f.eks. modernizr
+
+---
+
+class: fullscreen middle
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_escalator.jpeg)
+<div class="overlay loud" style="top:50%">
+  <p>
+      An escalator can never break, <br />
+      it can only become stairs.
+      <small style="display:block;">Mitch Hedberg</small>
+  </p>
+</div>
+
+.source[http://flic.kr/p/wzHU]
+
+---
+class: fullscreen middle
+
+![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_moped.jpeg)
+
+<div class="overlay loud" style="top:71%">
+  <p>
+      Moped: Pedaler &amp; motor
+      <small style="display:block;">Progressive enhancement</small>
+  </p>
+</div>
+
+.source[http://flic.kr/p/4W4qfx]
+
+---
+class: middle center
+
+# Men hva består en nettside av?
+
+---
+
+class: middle center
+
+![HTML](resources/html.jpg)
+
+.source[http://flic.kr/p/5HzQsy]
+
+---
+
+class: center middle
+
+![](resources/css-gangnam.jpg)
+
+---
+
+class: center middle
+
+![](resources/javascript.png)
+
+.source[http://codepen.io/peterschmiz/pen/xmqCg]
+
+---
+
+class: center middle
+
+![](resources/browser-layered-cake.jpeg)
+
+---
+exclude:true
+class: fullscreen
+
+![](resources/abakus.png)
+
+---
+class: fullscreen
+
+![](resources/uio.png)
+
+---
+exclude:true
+class: fullscreen
+
+![](resources/abakus-html.png)
+
+---
+class: fullscreen
+
+![](resources/uio-html.png)
+
+---
+exclude:true
+class: fullscreen
+
+![](resources/abakus-uten-css.png)
+
+---
+class: fullscreen
+
+![](resources/uio-uten-css.png)
+
+---
+exclude:true
+class: fullscreen
+
+  <iframe src="resources/abakus.no.html" />
+
+---
+class: fullscreen
+
+  <iframe src="http://www.uio.no/studier/program/#topic=&type=" />
+
+---
+class: center middle
+<img src="resources/google-maps.png"/>
+.source[https://maps.google.com/]
+---
+class: center middle
+<img src="resources/spotify.png"/>
+.source[https://play.spotify.com/]
+---

@@ -1,0 +1,113 @@
+
+class: center middle
+
+# Interaksjon
+
+---
+
+#Events
+
+## Recap:
+
+--
+
+```html
+  <button id="btn">Knapp</button>
+```
+
+--
+
+```javascript
+  var button = document.querySelector('#btn');
+
+  button.addEventListener('click', function() {
+    console.log('heia');
+  });
+```
+---
+# Events
+
+```html
+<div id="buttons">
+  <button id="btn1">Knapp1</button>
+  <button id="btn2">Knapp2</button>
+  <button id="btn3">Knapp3</button>
+  <button id="btn4">Knapp4</button>
+  <!-- ... -->
+</div>
+```
+
+##  Må vi legge til 4 individuelle listeners?
+
+
+---
+# Event Propagation
+
+![](resources/events.jpg)
+
+---
+# Event Propagation
+
+```html
+<div class="buttons">
+  <button id="btn1">Knapp1</button>
+  <button id="btn2">Knapp2</button>
+  <button id="btn3">Knapp3</button>
+  <button id="btn4">Knapp4</button>
+  <!-- ... -->
+</div>
+```
+--
+```javascript
+var container = document.querySelector('.buttons');
+
+container.addEventListener('click', function() {
+  console.log('heia');
+});
+```
+---
+# Event Propagation
+
+## `event`-objektet
+
+```javascript
+var container = document.querySelector('.buttons');
+
+container.addEventListener('click', function(event) {
+  var element = event.target;
+  console.log(element.nodeName) //=>BUTTON eller DIV
+});
+```
+---
+# Event Propagation
+
+## `event`-objektet
+
+```javascript
+var container = document.querySelector('.buttons');
+
+container.addEventListener('click', function(event) {
+  var element = event.target;
+  if(element.nodeName !== 'BUTTON') {
+    return; // do nothing
+  }
+  var number = element.//....
+
+});
+```
+
+---
+class: split
+
+# Oppgave
+
+Dere skal gjøre nedtelleren interaktiv!
+
+- Lag en JavaScript-fil som du inkluderer nederst i `<body>` i HTMLen din<br/>
+    (`<script type="text/javascript" src="navnPaFil.js"></script>`)
+- Legg til en klikk-listener på `.buttons`
+- Om en knapp ble trykket på, legg til verdien til knappen i `output`
+
+
+<iframe src="../solutions/6/nedteller.html" style="width: 50%" />
+---

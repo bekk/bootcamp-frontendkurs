@@ -1,0 +1,240 @@
+
+class: center middle
+
+#HTML
+
+## HyperText Markup Language
+
+---
+#HTML
+
+```html
+  <tag />
+
+  <tag>Innhold</tag>
+```
+
+???
+
+Hovedregel er at alle tagger trenger åpne / lukke<br>
+Kun elementer som ikke **kan** ha innhold avsluttes dirrekte
+
+--
+
+```html
+  <tag attributt="verdi">Innhold</tag>
+```
+
+--
+
+```html
+  <tag>
+    <tag></tag>
+    <tag></tag>
+    <tag>
+      <tag></tag>
+      <tag></tag>
+    </tag>
+  </tag>
+```
+
+---
+class: center middle
+
+# Semantikk
+
+## html, body, div, span, h1, a, p, ... wtf
+
+Semantikk betyr at typen til en HTML-tagg sier noe om hva slags innhold den har.
+
+???
+
+Viktig for f.eks Universell Utforming og søkemotorer
+
+---
+
+# HTML5
+
+```html
+    <div id="header">…</div>
+
+    <div class="section"></div>
+
+    <div id="navigation">…</div>
+
+    <div class="article"></div>
+
+    <div id="sidebar"></div>
+```
+---
+
+# HTML5
+
+Mer semantisk riktig HTML
+```html
+    <div id="header">…</div> &mdash; <header>…</header>
+
+    <div class="section"></div> &mdash; <section>…</section>
+
+    <div id="navigation">…</div> &mdash; <nav>…</nav>
+
+    <div class="article"></div> &mdash; <article>…</article>
+
+    <div id="sidebar"></div> &mdash; <aside>…</aside>
+
+```
+
+---
+.source[https://developer.mozilla.org/en/docs/Web/HTML/Element]
+
+# HTML
+
+
+## Semantiske
+```html
+  <header></header>
+  <nav></nav>
+  <main></main>
+  <footer></footer>
+
+  <h1></h1>
+  <p></p>
+  <a></a>
+  <button></button>
+```
+
+## Ikke-Semantiske
+```html
+  <div></div>
+  <span></span>
+```
+
+---
+## Flere HTML-tager:
+```html
+     <h1></h1> ... <h6></h6>
+     <ul></ul>
+     <ol></ol>
+     <li></li>
+     <dl></dl>
+     <dt></dt>
+     <dd></dd>
+     <article></article>
+     <section></section>
+     <aside></aside>
+     <table></table>
+     <caption></caption>
+     <button></button>
+     <label></label>
+     <input />
+     <figure></figure>
+     <img />
+     <script></script>
+```
+???
+Spørre om det er noen som vet forskjell på article og section? Huskeregel - ikke tenke på article som en avisartikkel men heller
+en artikkel i en butikk - altså et item - noe som gir mening uten kontekst. Section derimot gir kun mening inni i en kontekst - typisk en article.
+---
+class: center middle
+
+##Attributter
+
+---
+#HTML
+
+```html
+  <div id="unik-id"></div>
+```
+--
+```html
+  <div class="en-klasse en-annen-klasse"></div>
+```
+--
+```html
+  <input type="checkbox" checked/>
+```
+--
+```html
+  <img src="et_fint_bilde.jpg" alt="En tekst som beskriver bilde for de som ikke ser"/>
+```
+--
+```html
+  <a href="side2.html"></a>
+```
+---
+```html
+  <!doctype html>
+  <html lang="en">
+
+    <head>
+      <title>En enkel HTML-side</title>
+    </head>
+
+    <body>
+      <header>
+        <h1>Velkommen</h1>
+        <nav>
+          <a href="side2.html">Side2</a>
+        </nav>
+      </header>
+      <main>
+        <article>En artikkel</article>
+      </main>
+      <footer>The end</footer>
+    </body>
+
+  </html>
+```
+
+---
+class: center middle
+
+# DevTool
+
+## ⌘ + ⌥ + i &nbsp;/&nbsp; ctrl + ⇧ + i
+???
+vis at man kan kjøre en fil i chorme
+vis hvordan devtools fungerer
+
+
+---
+class:
+
+# Oppgave
+
+
+<a href="https://jsfiddle.net/ingvilin/oqtv1md0/">Gjør HTML-en mer semantisk riktig ved å ta i bruk andre tags</a>
+
+<a href="http://html5doctor.com/downloads/h5d-sectioning-flowchart.png">Hint</a>
+???
+https://jsfiddle.net/ingvilin/t9613yj8/1/
+---
+class:
+
+# Oppgave
+* Diskuter med sidemannen hvilke htmlelementer dere ville ha valgt for å implementere følgende navigasjonsmeny:
+
+<img src="resources/nav-html.png" style="width: 100%;"/>
+
+---
+class:
+
+# Oppgave
+* Diskuter med sidemannen hvilke htmlelementer dere ville ha valgt for å implementere følgende accordion:
+
+<img src="resources/accordion.png" style="width:50%;"/>
+???
+* Details - summary - kommer med animasjon som er vanskelig å overskrive - semantisk beste
+* dl - description list som inneholder par av terms & descriptions
+* ul - gir det mening at det er en liste - eller er elementene så forskjellig at de ikke passer i en liste?
+* div - med sections - så pass forskjellige?
+---
+class: split
+
+# Oppgave
+* Ta utgangspunkt i filen: `del1/assignment/teller.html`
+* Bruk html-elementene `<button>` og `<output>` for å lage layouten til høyre
+
+<iframe src="../solutions/1/teller.html" style="width: 50%; background-color:#fff" />
+
+---
