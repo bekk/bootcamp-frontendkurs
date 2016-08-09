@@ -1,0 +1,4 @@
+
+class: center middle
+
+## <a href="../../del3/slides/index.html">Neste del</a>
