@@ -2,31 +2,9 @@
 
 class: center middle
 
-#JavaScript
+#JavaScript - litt repetisjon
 
 ---
-
-class: middle center
-
-JavaScript er et programmeringspråk
-
----
-
-class: middle center
-
- ... men det har ingenting med Java å gjøre.
-
----
-
-# JavaScript vs. Java
-
-* Dynamisk språk vs. kompilert språk
-* Dynamisk typing vs. statisk typing
-* Prototypebasert arv vs. klassebasert arv
-
----
-
-
 #JavaScript
 
 ```javascript
@@ -63,36 +41,6 @@ class: middle center
 
   hello('Bob'); // Hello, Bob!
 ```
----
-
-# Typer
-
-Vi kan bruke **typeof**-operatoren for å sjekke type.
-
-    typeof {};          // 'object'
-
---
-    typeof [];          // 'object'     WTF?
-
---
-    typeof 1;           // 'number'
-
---
-    typeof '';          // 'string'
-
---
-    typeof true;        // 'boolean'
-
---
-    typeof false;       // 'boolean'
-
---
-    typeof minVar       // 'undefined'
-
---
-
-    typeof null;        // 'object'     WTF?
-
 ---
 # Variabler, objekter og datatyper
 
