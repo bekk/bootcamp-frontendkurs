@@ -1,0 +1,25 @@
+input {
+  border: 2px solid @base;
+  padding: .5rem;
+  font-size: 1rem;
+
+  &:focus {
+    .focus(3px);
+  }
+}
+
+button {
+  border: 2px solid @base;
+  font-size: 1rem;
+  padding: .5rem;
+  background: @complement1;
+
+  &:hover {
+    cursor: pointer;
+    background: @base;
+  }
+
+  &:focus {
+    .focus(3px);
+  }
+}

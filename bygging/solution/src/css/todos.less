@@ -1,0 +1,22 @@
+.todoList ul li {
+  list-style: none;
+  margin: 1rem 0;
+
+  label {
+
+    &.completed {
+      text-decoration: line-through;
+      color: lighten(@text, 20%);
+    }
+
+    &:hover {
+      color: @complement2;
+      cursor: pointer;
+    }
+
+    &:focus {
+      .focus(1px);
+    }
+
+  }
+}
