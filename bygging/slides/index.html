@@ -121,15 +121,13 @@ Frarådes å bruke, da man vil ha likt over alt
 # Oppgave
 
 * Legg til dette som avhengigheter i package.json (i bygging/assignment-mappa)
-* Dependencies:
- * moment, versjon 2.14.1
-* dev dependencies:
+* <b>dev dependencies</b>:
  * babelify, versjon 7.3.0
  * babel-preset-es2015, versjon 6.9.0
  * browserify, versjon 13.1.0
  * gulp-uglify, versjon 1.5.4
  * gulp-less, versjon 3.1.0
-* Kjør <b>npm install</b> i samme mappe
+* Kjør <b>npm install</b> i samme mappe og se at alt går bra (warnings er ok)
 
 ---
 
@@ -298,10 +296,12 @@ Gruppere styling, slippe å repetere selektor. Legg merke til &-tegnet
 
 ```css
 .aaaa {
+  // 1
   .bbbb {
+    // 2
   }
-
   &.cccc {
+    // 3
   }
 }
 ```
@@ -309,11 +309,11 @@ Gruppere styling, slippe å repetere selektor. Legg merke til &-tegnet
 transpileres til
 
 ```css
-.aaaa {}
+.aaaa { /* 1 */ }
 
-.aaaa .bbbb {}
+.aaaa .bbbb { /* 2 */ }
 
-.aaaa.cccc {}
+.aaaa.cccc { /* 3 */ }
 ```
 ---
 
@@ -413,9 +413,131 @@ gulp.task('build-less', function () {
 
 * En transpilator for Javascript
 * Lar en skrive ES6 / ES2015 kode og så gjøre det om til ES5.
+ * Og annen syntax man ønsker, f. eks. React-JSX
+* Trengs, da støtten til ES2015 features ikke er på plass i alle nettlesere.
+
+---
+
+# Babel - eksempel
+
+```javascript
+const a = 2;
+let b = [1, 2, 3, 4];
+
+b.map(e => e * a);
+
+var c = `Hei, ${a} og ${a * 3}`;
+```
+blir til
+```javascript
+var a = 2;
+var b = [1, 2, 3, 4];
+
+b.map(function (e) {
+  return e * a;
+});
+
+var c = "Hei, " + a + " og " + a * 3;
+```
 
 
+---
 
+# Import / export
+
+* ES6 kom med støtte for moduler
+* Lar oss lettere ha kode i forskjellige filer og gjenbruke
+
+```javascript
+// minTing.js
+const MinTing = ...
+export default MinTing;
+```
+
+```javascript
+// annenTing.js
+export function something() {}
+export function somethingElse() {}
+```
+
+```javascript
+import MinTing from './minTing';
+import {something} from './annenTing';
+
+// biblioteker importeres med navnet
+import React from 'react';
+
+something();
+```
+
+---
+
+# Browserify
+
+* Men vi kan ikke bruke moduler i nettleseren!
+ * Ingen nettlesere støtter det
+ * Ingen grunn til at de bør implementere det
+
+Browserify starter i en fil, følger alle imports rekursivt og lager én stor fil som inneholder alt.
+
+
+---
+
+# Uglify
+
+Minifiserer javascripten så den tar mindre plass, og blir raskere å parse/kjøre for nettleseren
+
+```javascipt
+function test(input1, input2) {
+  var minVariabel = false;
+  if (input1 && minVariabel) {
+    console.log("heia");
+  }
+}
+```
+blir til
+```javascript
+function test(a,b){var c=!1;a&&c&&console.log("heia")}
+```
+
+---
+# Bygge JS i Gulp
+
+Browserify får inn hoved-filen, leser ut hva den importerer og lager en stor bundle. Babelify transpilerer koden,
+før uglify så minifiserer den.
+
+```javascript
+var uglify = require('gulp-uglify');
+var browserify = require('browserify');
+
+gulp.task('build-js', function () {
+    return browserify(SOURCE_DIRECTORY + '/js/app.js')
+        .transform('babelify', {presets: ['es2015']})
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
+        .pipe(uglify())
+        .pipe(gulp.dest(OUTPUT_DIRECTORY));
+});
+```
+
+---
+
+# Oppgave
+
+* Legg til tasken fra forrige slide i gulpfile.js
+ * Legg den til i build-tasken
+ * Legg på en watcher på js-filer
+
+Bygg prosjektet. Da skal du kunne åpne index.html (fra dist-mappen) i en nettleser og kunne legge til og trykke på TODOs.
+
+* Bruk moment.js for å skrive tidspunktene penere
+ * Legg til <b>moment</b> versjon 2.14.1 som en dependency i package.json (ikke som en devDependency)
+ * Kjør <b>npm install</b>
+ * I utils.js, importer moment.
+ * Moment kalles med en dato, og så får man et objekt man deretter kan kalle nye metoder på
+  * `moment(new Date()).fromNow()`
+ * Gjør slik at funksjonen i utils.js returnerer fromNow på tiden den får inn.
 
 </textarea>
 
