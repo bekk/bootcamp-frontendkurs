@@ -1,0 +1,74 @@
+
+
+# CSS - arving
+
+```css
+p {
+    color: red;
+}
+
+b {
+    text-decoration: underline;
+}
+```
+```html
+<p>
+    Masse tekst
+    <b>Bold tekst</b>
+</p>
+```
+
+<p style="color: red">Masse tekst <b style="text-decoration: underline;">Bold tekst</b></p>
+
+---
+
+
+# CSS Specificity
+
+Hva skjer om flere CSS-regler treffer et element?
+
+Se på selektoren, den mest <b>spesifikke</b> gjelder.
+
+Huskeregel: <b>Inline - ID - klasse - element </b>, høyeste "tall" vinner
+
+```css
+html div.featured {} // 0 - 0 - 1 - 2
+body div.featured {} // 0 - 0 - 1 - 2
+#main #content a {} //  0 - 2 - 0 - 1
+#main #content {} //    0 - 2 - 0 - 0
+```
+
+```html
+<span style="color: red"> <!-- // 1 - 0 - 0 - 0 --->
+```
+
+Om likt: <b>Den siste regelen i fila vinner</b>
+---
+
+# Specificity eksempel
+
+```css
+ul .favorite {
+  color: red;
+}
+
+ul li {
+  color: blue;
+}
+```
+
+```html
+<ul>
+    <li>Rød</li>
+    <li class="favorite">Blå</li>
+    <li>Rød</li>
+</ul>
+```
+
+---
+
+class: center middle
+
+# Quiz time
+
+---
