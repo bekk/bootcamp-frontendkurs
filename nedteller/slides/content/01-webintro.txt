@@ -11,7 +11,9 @@ Mer og mer av appene vi bruker er nå en webapplikasjon, dvs en webside med mass
 Før vi knaller igang med teknologien er det hensiktsmessig å snakke litt mer om hvor weben kommer fra for å forstå hvorfor ting er som det er.
 
 ---
-
+class: middle center
+## ...men hvor kommer weben fra?
+---
 class: fullscreen middle
 ![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_uglysite_ie.jpg)
 
@@ -129,7 +131,6 @@ class: fullscreen middle
 <div class="overlay loud" style="top:71%">
   <p>
       Moped: Pedaler &amp; motor
-      <small style="display:block;">Progressive enhancement</small>
   </p>
 </div>
 

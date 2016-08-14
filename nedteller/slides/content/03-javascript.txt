@@ -42,6 +42,36 @@ class: center middle
   hello('Bob'); // Hello, Bob!
 ```
 ---
+
+# Typer
+
+Vi kan bruke **typeof**-operatoren for å sjekke type.
+
+    typeof {};          // 'object'
+
+--
+    typeof [];          // 'object'     WTF?
+
+--
+    typeof 1;           // 'number'
+
+--
+    typeof '';          // 'string'
+
+--
+    typeof true;        // 'boolean'
+
+--
+    typeof false;       // 'boolean'
+
+--
+    typeof minVar       // 'undefined'
+
+--
+
+    typeof null;        // 'object'     WTF?
+
+---
 # Variabler, objekter og datatyper
 
 En samling av "key-value"

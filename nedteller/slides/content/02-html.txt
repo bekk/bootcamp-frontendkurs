@@ -227,7 +227,7 @@ class:
 * Details - summary - kommer med animasjon som er vanskelig å overskrive - semantisk beste
 * dl - description list som inneholder par av terms & descriptions
 * ul - gir det mening at det er en liste - eller er elementene så forskjellig at de ikke passer i en liste?
-* div - med sections - så pass forskjellige?
+* article - med section - så pass forskjellige?
 ---
 class: split
 

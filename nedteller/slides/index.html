@@ -78,7 +78,9 @@ Mer og mer av appene vi bruker er nå en webapplikasjon, dvs en webside med mass
 Før vi knaller igang med teknologien er det hensiktsmessig å snakke litt mer om hvor weben kommer fra for å forstå hvorfor ting er som det er.
 
 ---
-
+class: middle center
+## ...men hvor kommer weben fra?
+---
 class: fullscreen middle
 ![](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/browser_uglysite_ie.jpg)
 
@@ -196,7 +198,6 @@ class: fullscreen middle
 <div class="overlay loud" style="top:71%">
   <p>
       Moped: Pedaler &amp; motor
-      <small style="display:block;">Progressive enhancement</small>
   </p>
 </div>
 
@@ -521,7 +522,7 @@ class:
 * Details - summary - kommer med animasjon som er vanskelig å overskrive - semantisk beste
 * dl - description list som inneholder par av terms & descriptions
 * ul - gir det mening at det er en liste - eller er elementene så forskjellig at de ikke passer i en liste?
-* div - med sections - så pass forskjellige?
+* article - med section - så pass forskjellige?
 ---
 class: split
 
@@ -579,6 +580,36 @@ class: center middle
 
   hello('Bob'); // Hello, Bob!
 ```
+---
+
+# Typer
+
+Vi kan bruke **typeof**-operatoren for å sjekke type.
+
+    typeof {};          // 'object'
+
+--
+    typeof [];          // 'object'     WTF?
+
+--
+    typeof 1;           // 'number'
+
+--
+    typeof '';          // 'string'
+
+--
+    typeof true;        // 'boolean'
+
+--
+    typeof false;       // 'boolean'
+
+--
+    typeof minVar       // 'undefined'
+
+--
+
+    typeof null;        // 'object'     WTF?
+
 ---
 # Variabler, objekter og datatyper
 
