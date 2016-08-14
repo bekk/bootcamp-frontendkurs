@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Byggeslides</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/bekk/remark/master/dist/bekk.css">
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body class="bekk-black">
+<textarea id="source">
+
+class: front-page
+# Bygging og verktøy
+## for frontend-applikasjoner
+
+---
+
+# Prosjekthverdagen
+
+* Rammeverk
+* Avhengigheter / dependency management
+* Bygging
+* Testing
+* Linting
+
+???
+
+Hverdagen annerledes, så lagt inn dette for ikke så brå overgang
+Flere som jobber på samme, store prosjekt, flere enn 1js fil osv
+
+Bruker biblioteker, i morra se på React+Redux
+Hvordan inkluderes disse bibliotekene?
+Koden "kompileres", kjøres ikke rett fra kildefiler som nå, hvorfor kommer vi tilbake til
+Skriver tester
+Linting, da JS dynamisk typa
+
+
+---
+
+# NodeJS
+
+* Lar en skrive backend/server i Javascript
+* Bygget på Google V8
+* Kom med en pakkebehandler
+* Lar en skrive verktøy i Javascript
+
+???
+
+Før vi går videre må vi ta en titt på node
+Kom i 2009, kombinerer javascript-motoren til Chrome
+Selv om det er en backend-ting, førte den med seg mye bra
+    til hele javascript-miljøet, inkludert frontend
+Pakkebehandleren kan brukes til frontend-ting også
+Og plutselig kan alle javascript-frontend-koderne lage
+    verktøy i et språk de kan fra før av
+
+---
+
+# NPM
+
+* Node Package Manager
+* Brukes for å hente ned avhengigheter man trenger
+    * Rammeverk / biblioteker
+    * Verktøy
+
+Hvorfor?
+* Før lastet man ned avhengigheter manuelt
+* Enkelt å vedlikeholde
+* Håndterer transitive avhengigheter
+* Trenger ikke inkludere avhenighetene i Git-repoet
+
+???
+La oss si du ville bruke jquery på prosjektet, da gikk du på
+nettsiden, og lastet ned og la jquery.js i en mappe
+Tegne graf?
+.gitignore
+
+---
+# NPM
+
+Alle avhengigheter legges i `package.json` i roten av prosjektet.
+
+<b>dependencies</b> er avhengigheter den faktiske koden trenger (rammverk osv.)
+
+<b>devDependencies</b> er verktøy og annet som brukes under utvikling.
+
+```json
+{
+  "name": "bygging-workshop",
+  "dependencies": {
+    "jquery": "1.9.0",
+    "react": "15.0.0"
+  },
+  "devDependencies": {
+    "del": "2.2.1",
+    "gulp": "3.9.1",
+    "gulp-rename": "1.2.2"
+  }
+}
+```
+---
+
+# Semantic Versioning
+
+http://semver.org/
+
+<b>x.y.z</b> = major.minor.patch
+
+Eks: <b>1.4.8</b>
+
+NPM lar en spesifisere at man alltid ønsker nyeste versjon innenfor et intervall
+
+<b>~1.2.3</b> tilsvarer <b>1.2.X</b>
+
+<b>^1.2.3</b> tilsvarer <b>1.X.Y</b>
+
+Frarådes å bruke, da man vil ha likt over alt
+
+---
+
+# Oppgave
+
+* Legg til dette som avhengigheter i package.json (i bygging/assignment-mappa)
+* Dependencies:
+ * moment, versjon 2.14.1
+* dev dependencies:
+ * babelify, versjon 7.3.0
+ * babel-preset-es2015, versjon 6.9.0
+ * browserify, versjon 13.1.0
+ * gulp-uglify, versjon 1.5.4
+ * gulp-less, versjon 3.1.0
+* Kjør <b>npm install</b> i samme mappe
+
+---
+
+# Bygging
+
+Hvorfor bygge?
+* Diggere å utvikle
+    * Automatisere kjipe ting
+    * Gjøre ting som ikke er støttet i språket
+* Optimalisere koden
+    * Færre filer
+    * Mindre filer
+
+Har filer i en <b>src</b>-mappe som så blir behandlet og spyttet
+    ut i en <b>dist</b>-mappe. Denne dist(ribusjon)-mappen som brukes i produksjon.
+
+---
+# Gulp
+
+* En task-runner spesialisert på å jobbe med filer.
+* Legger byggestegene som tasks i <b>gulpfile.js</b>
+
+```javascript
+gulp.task('copy-html', function () {
+    return gulp.src('src/index.html')
+        .pipe(gulp.dest('dest'));
+});
+
+gulp.task('build', ['clean'], function () {
+    return gulp.start(['copy-html', 'build-less']);
+});
+```
+
+* Kjøres i terminal med `gulp <taskname>`, f. eks. `gulp copy-html` eller `gulp build`
+
+
+???
+Finnes alternativer, denne eller webpack folk flest bruker
+
+
+
+---
+
+# Gulp
+
+Leser inn filer (fra `src`), <b>piper</b> igjennom steg og skriver så til `dist`.
+
+```javascript
+gulp.src('src/sti/til/filer/**/*.js')
+    .pipe(noeGreier())
+    .pipe(endaLittTil())
+    .pipe(gulp.dest('dist'));
+```
+
+---
+
+# Gulp watch
+
+Dumt å måtte kjøre `gulp build` hver gang man gjør en endring.
+
+Gulp kan 'watche' filer og trigge tasks når noe endres.
+
+```javascript
+gulp.watch('src/index.html', ['copy-html']);
+gulp.watch('src/js/**/*.js', ['build-js']);
+```
+
+Vanlig å lage en task som heter `watch`, som starter en build og bygger riktige deler på nytt ved endringer
+
+Hender den tryner, sjekk terminalen
+
+---
+
+# Oppgaver
+
+* Installer gulp med <b>npm install -g gulp</b> (muligens som sudo)
+
+Det ligger allerede en copy-html task i gulpfile.js og påbegynt build og watch tasker.
+
+* Legg til copy-html i `gulp.start([...])` i <b>build</b>-tasken
+* Legg en watcher i <b>watch</b>-tasken som kaller <b>copy-html</b> når htmlen endres.
+
+* Kjør <b>gulp build</b> i riktig mappe i terminalen og sjekk at index.html blir kopiert over til dist-mappen
+
+* Kjør gulp watch, åpne index.html i dist-mappen i en nettleser. Gjør en liten endring i index.html i src-mappen,
+  refresh nettleseren og se at endringen skjer.
+
+
+---
+
+# LESS
+
+* Et språk som transpileres ned til CSS
+* Kan bare gjøre det man kan med CSS
+* Men med bedre syntaks
+* Veldig likt CSS, men har
+ * Variabler
+ * Nyttige innebygde funksjoner
+ * Nesting
+ * Mixins
+
+---
+
+# Less - variabler
+
+* Kan definere variabler man kan gjenbruke
+* Spesielt nyttig for farger
+* Defineres og brukes med @
+
+```less
+@primary: #ffffff;
+@secondary: #cccccc;
+
+.btn {
+  color: @secondary;
+  border: 1px solid @primary;
+}
+```
+
+transpileres til
+
+```css
+.btn {
+  color: #cccccc;
+  border: 1px solid #ffffff;
+}
+```
+
+---
+
+# Less - funksjoner
+
++, - osv. samt mange andre http://lesscss.org/functions/
+
+
+```less
+@primary: #ffffff;
+@darken: darken(@primary, 20%);
+@spacing: 5px;
+
+.btn {
+  color: @darken;
+  border: 1px solid darken(@darken, 100%);
+  padding: @spacing + 10px;
+}
+```
+
+```css
+
+.btn {
+  color: #cccccc;
+  border: 1px solid #000000;
+  padding: 15px;
+}
+```
+
+
+
+???
+skal ikke gå innpå alt
+
+---
+# Less - nesting
+
+Gruppere styling, slippe å repetere selektor. Legg merke til &-tegnet
+
+```css
+.aaaa {
+  .bbbb {
+  }
+
+  &.cccc {
+  }
+}
+```
+
+transpileres til
+
+```css
+.aaaa {}
+
+.aaaa .bbbb {}
+
+.aaaa.cccc {}
+```
+---
+
+# Less - nesting
+
+
+```css
+.btn {
+  padding: 15px;
+  border: 1px solid @primary;
+
+  &.btn-ok {
+    background: @secondary;
+  }
+
+  &:hover {
+    color: @something;
+  }
+
+  .icon {
+
+  }
+}
+```
+```html
+<button class="btn">Tekst</button>
+<button class="btn btn-ok">Tekst</button>
+<button class="btn"><span class="icon"></span> Tekst</button>
+```
+
+---
+
+# Less - mixins
+
+Lar en definere egne funksjoner/gjenbrukbare CSS-snutter
+
+```css
+.ramme(@farge, @radius) {
+  border: 1px solid @farge;
+  border-radius: @radius;
+}
+.btn {
+  .ramme(#fff, 5px);
+}
+input {
+  .ramme(#ccc, 10px);
+}
+```
+```css
+.btn {
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+input {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+```
+---
+
+# Less - bygging
+
+* Less kan importere andre less-filer, så peker som regel til en hovedfil (main.less)
+ som importerer andre filer.
+
+```javascript
+var less = require('gulp-less');
+
+// ...
+gulp.task('build-less', function () {
+    return gulp.src(SOURCE_DIRECTORY + '/css/main.less')
+        .pipe(less())
+        .pipe(rename('styles.css'))
+        .pipe(gulp.dest(OUTPUT_DIRECTORY));
+});
+```
+---
+
+# Oppgaver
+
+* Legg til less-bygging i gulpfilen
+  * Require inn less og legg inn tasken fra forrige slide
+  * Legg til `build-less` i `build`-tasken, og legg til en watch på less-filer i `watch`-tasken som kalles `build-less`
+
+* Start `gulp watch`, åpne index.html (den i dist-mappen) i en nettleser og sjekk at styling er på plass
+* Endre på `@base`-fargen i `variables.less`, refresh nettleseren og se hvordan alt blir endret
+* Legg til `:hover` styling på labels i todos.less og knappen i form.less ved å bruke en nestet regel
+
+## Bonus
+* Legg til en mixins.less fil og importer den i main.less (restart gulp watch etterpå)
+* Legg til en mixin som setter focus-markering ved tabbing på labels i todos.less og knapper og input i form.less
+ * F. eks ta inn @px som verdi og så: `box-shadow: 0px 0px @px @px @focus-color; outline: 0;`
+
+---
+
+# Babel
+
+* En transpilator for Javascript
+* Lar en skrive ES6 / ES2015 kode og så gjøre det om til ES5.
+
+
+
+
+</textarea>
+
+<script src="https://cdn.rawgit.com/bekk/remark/master/vendor/remark.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var slideshow = remark.create({
+        ratio: '16:9',
+        highlightLanguage: 'javascript',
+        highlightStyle: 'monokai',
+        navigation: {
+            scroll: false
+        }
+    });
+
+</script>
+
+</body>
+</html>

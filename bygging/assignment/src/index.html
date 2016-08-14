@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Byggejobb</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="container">
+    <h1>TODO LIST</h1>
+
+    <h2>Add item</h2>
+
+    <div class="submitbox">
+        <form id="todoForm">
+            <input type="text" id="todoName">
+            <button type="submit">Lagre</button>
+        </form>
+    </div>
+
+
+    <div id="todoList" class="todoList">
+        <!-- Dummy-data før javascripten fungerer -->
+        <div id="notCompleted">
+            <h2>Not completed</h2>
+            <ul>
+                <li>
+                    <label id="todo-2" tabindex="0" data-id="2" class="">
+                        Bygg LESS
+                        -
+                        Added
+                        <span class="timesince">an hour ago</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label id="todo-3" tabindex="0" data-id="3" class="">
+                        Bygg Javascript
+                        -
+                        Added
+                        <span class="timesince">2 hours ago</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label id="todo-4" tabindex="0" data-id="4" class="">
+                        cv
+                        -
+                        Added
+                        <span class="timesince">an hour ago</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <div id="completed">
+            <h2>Completed</h2>
+            <ul>
+                <li>
+                    <label id="todo-0" tabindex="0" data-id="0" class="completed ">
+                        Lære CSS
+                        -
+                        Completed
+                        <span class="timesince">an hour ago</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label id="todo-1" tabindex="0" data-id="1" class="completed ">
+                        Dra på Bootcamp
+                        -
+                        Completed
+                        <span class="timesince">4 days ago</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="bundle.js"></script>
+</body>
+</html>
