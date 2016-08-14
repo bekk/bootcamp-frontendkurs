@@ -306,10 +306,10 @@ class: split
 * Endre font, farge og skriftstørrelse på teller-verdien
 * Endre størrelse, bakgrunnsfarge, border/ramme og tekstfarge på knappene
 
+&nbsp;
+## Øv på CSS selektorer
 
-## Bonus
-
-* http://flukeout.github.io/
+* CSS Diner http://flukeout.github.io/
 
 
 

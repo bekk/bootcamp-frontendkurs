@@ -1148,10 +1148,10 @@ class: split
 * Endre font, farge og skriftstørrelse på teller-verdien
 * Endre størrelse, bakgrunnsfarge, border/ramme og tekstfarge på knappene
 
+&nbsp;
+## Øv på CSS selektorer
 
-## Bonus
-
-* http://flukeout.github.io/
+* CSS Diner http://flukeout.github.io/
 
 
 
@@ -1176,7 +1176,7 @@ Dimensjoner, flyt, posisjonering
 
 ---
 
-#Box sizing
+#Box model
 
 ```css
 .min-boks {
@@ -1195,7 +1195,7 @@ Dimensjoner, flyt, posisjonering
 
 ---
 
-#Box sizing
+#Box model
 
 ```css
 .min-boks {
@@ -1214,7 +1214,7 @@ Dimensjoner, flyt, posisjonering
 
 ---
 
-#Box sizing
+#Box model
 
 ```css
 .min-boks {
@@ -1232,7 +1232,7 @@ Dimensjoner, flyt, posisjonering
   border: 15px solid #FD5158;">Lorem ipsum</div>
 ---
 
-#Box sizing
+#Box model
 
 ```css
 .min-boks {
@@ -1254,7 +1254,7 @@ Dimensjoner, flyt, posisjonering
 
 ---
 
-#Box sizing
+#Box model
 
 ```css
 .min-boks {
@@ -1273,69 +1273,6 @@ Dimensjoner, flyt, posisjonering
   padding: 20px;
   background: black;
   border: 15px solid #FD5158; display: inline-block; margin: 20px;">Lorem ipsum</div>
-
----
-exclude:true
-#Box sizing: border-box
-
-```css
-div {
-  box-sizing: border-box;
-  width: 300px;
-  height: 100px;
-  padding: 0px;
-  border: 0px solid #FD5158;
-}
-```
-<div style="box-sizing:border-box; width: 300px; height: 100px;
-  padding: 0px;
-  background: black;
-  border: 0px solid #FD5158;">Lorem ipsum</div>
-
----
-
-exclude:true
-#Box sizing: border-box
-
-```css
-div {
-  box-sizing: border-box;
-  width: 300px;
-  height: 100px;
-  padding: 20px;
-  border: 0px solid #FD5158;
-}
-```
-<div style="box-sizing:border-box; width: 300px; height: 100px;
-  padding: 20px;
-  background: black;
-  border: 0px solid #FD5158;">Lorem ipsum</div>
-
----
-exclude:true
-#Box sizing: border-box
-
-```css
-div {
-  box-sizing: border-box;
-  width: 300px;
-  height: 100px;
-  padding: 20px;
-  border: 15px solid #FD5158;
-}
-```
-<div style="box-sizing:border-box; width: 300px; height: 100px;
-  padding: 20px;
-  background: black;
-  border: 15px solid #FD5158;">Lorem ipsum</div>
-
---
-exclude:true
-
-<div style="width: 300px; height: 100px;
-  padding: 20px;
-  background: black;
-  border: 15px solid #FD5158;">Lorem ipsum</div>
 
 ---
 
@@ -1364,6 +1301,30 @@ exclude:true
 
 
 Pakke-metafor.
+
+---
+
+# Box model - box sizing
+```css
+.min-boks {
+  width: 300px;
+  height: 100px;
+  padding: 20px;
+  border: 15px solid #FD5158;
+  margin: 30px;
+  box-sizing: border-box;
+}
+```
+
+<div style="width: 300px; height: 100px; box-sizing: border-box;
+  padding: 20px;
+  background: black;
+  border: 15px solid #FD5158; display: inline-block; margin: 20px;">Lorem ipsum</div>
+
+<div style="width: 300px; height: 100px;
+  padding: 20px;
+  background: black;
+  border: 15px solid #FD5158; display: inline-block; margin: 20px;">Lorem ipsum</div>
 
 ---
 
@@ -1581,20 +1542,52 @@ div.c {
 ```]
 
 ---
+# Floating
+
+Brukes for å få ting til å ligge ved siden av hverandre. Kan floate ting til venstre og høyre. Må `cleare` floaten når man er ferdig.
+
+```html
+<div>
+    <div style="float: left; width: 20%; background: #444;">Venstre</div>
+    <div style="background: #666;">Ikke venstre<br>Ikke venstre</div>
+</div>
+```
+
+<div>
+    <div style="float: left; width: 20%; background: #444;">Venstre</div>
+    <div style="background: #666;">Ikke venstre<br>Ikke venstre</div>
+</div>
+
+```css
+.neste-element {
+  clear: both;
+}
+```
+
+Bruk flex-box for layout i stedet om mulig
+
+---
 
 #Oppgaver
-
+ * Box model: https://jsfiddle.net/Matsemann/Lk6njfqs/
  * Midtstilling: https://jsfiddle.net/Matsemann/wg8oLh8a/
  * Posisjonering: https://jsfiddle.net/Matsemann/b75wz3mj/1/
 
+## Bonus
+ * Lag en layout med float: https://jsfiddle.net/Matsemann/u91yLLwz/
 
 ???
 Løsninger
-
+ * https://jsfiddle.net/Matsemann/zoo4zdca/
  * https://jsfiddle.net/Matsemann/qb34mrut/1/
  * https://jsfiddle.net/Matsemann/t7jt0tyd/1/
+ * https://jsfiddle.net/Matsemann/jyu0hptf/1/
 
+
+ * Layout med flex: https://jsfiddle.net/Matsemann/u91yLLwz/1/
 ---
+
+
 class: split
 
 # Grunnleggende Flexbox
@@ -1826,10 +1819,11 @@ class: split
 * Midtstill og style start-knappen
 
 
-Farger:
+Farger: Gråfarge `#262626`, rødfarge `#fd5158`
 
-* Gråfarge: `#262626`
-* Rødfarge: `#fd5158`
+## Bonus
+* Spill http://flexboxfroggy.com/
+* Implementer float-oppgaven fra tidligere med flex-box
 
 
 <iframe src="../solutions/4/nedteller.html" style="width: 50%" />
