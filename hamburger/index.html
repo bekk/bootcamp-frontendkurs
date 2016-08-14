@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Frontendkurs</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/bekk/remark/master/dist/bekk.css">
+    <link rel="stylesheet" href="slides.css">
+    <style>
+        .eksempel:before {
+            content: "pseudo-element ";
+            color: red;
+        }
+        .eksempel-after:after {
+            content: "her kan man skrive hva som helst";
+            color: green;
+        }
+
+        ul {
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="bekk-black">
+<textarea id="source">
+class: center middle
+#Hamburgeroppgave
+
+<span class="today-date"></span>
+---
+class: middle center
+<iframe style="width: 100%; height: 100%;" src="http://codepen.io/hugo/full/LmJsf/" />
+
+---
+class: middle center
+## Men føst skal vi se på *:before* & *:after*
+
+---
+# :before
+## :before lager et pseudo-element som blir det første barnet til elementer som matcher selektoren
+
+--
+
+```css
+      .eksempel:before {
+            content: "pseudo-element ";
+            color: red;
+      }
+```
+```html
+    <p class="eksempel">Et eksempel på hvordan :before fungerer</p>
+```
+Resultatet:
+<p class="eksempel">Et eksempel på hvordan :before fungerer</p>
+
+---
+# :after
+## :after lager et pseudo-element som blir det <i>siste</i> barnet til elementer som matcher selektoren
+
+--
+
+```css
+      .eksempel:after {
+            content: "her kan man skrive hva som helst";
+            color: green;
+      }
+```
+```html
+    <p class="eksempel">Et eksempel på hvordan :after fungerer</p>
+```
+Resultatet:
+<p class="eksempel eksempel-after">Et eksempel på hvordan :after fungerer</p>
+
+---
+class: middle center
+## Men hva bruker man dette til?
+--
+
+* ikoner - sirkler, firkanter, stjerner osv
+* tall - nummerere i stedet for å bruke vanlig html
+* mye mer
+
+---
+class: middle center
+##Vi husker fra transitions:
+```css
+    div {
+        transition: <property> <duration> <timing-function> <delay>;
+    }
+```
+---
+
+class: middle center
+##<a href="https://jsfiddle.net/kset2km8/2/">Hamburgeroppgave</a>
+
+???
+fasit: hamburger: https://jsfiddle.net/ingvilin/3847vver/2/
+
+</textarea>
+<script src="https://cdn.rawgit.com/bekk/remark/master/vendor/remark.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var slideshow = remark.create({
+        ratio: '16:9',
+        highlightLanguage: 'javascript',
+        highlightStyle: 'monokai',
+        navigation: {
+            scroll: false
+        }
+    });
+
+    var dateStr = new Date().toLocaleString('nb-NO', {year: 'numeric', month: 'long', day: 'numeric'});
+
+    document.querySelector('.today-date').textContent = dateStr;
+
+</script>
+</body>
+</html>
