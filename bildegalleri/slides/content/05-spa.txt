@@ -135,7 +135,4 @@ router();
 
 http://localhost:5005
 
-## Bonus
-
-* Legg til støtte for å kunne vise enkeltbilder (se neste slides)
 ---

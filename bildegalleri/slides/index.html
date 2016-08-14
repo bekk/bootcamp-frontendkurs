@@ -425,6 +425,7 @@ getPhotos('bekk').then(function(data) {
     <!-- ... -->
 </main>
 ```
+
 ---
 
 # Løkker
@@ -1009,9 +1010,6 @@ router();
 
 http://localhost:5005
 
-## Bonus
-
-* Legg til støtte for å kunne vise enkeltbilder (se neste slides)
 ---
 
 
@@ -1070,17 +1068,12 @@ Koden over antar at lenken ligger rundt et bilde, og at alle lenker skal føre t
 
 # Oppgave
 
-* Legg en lenke rundt bildene som vises, som lenker til det man har søkt på pluss hvilken nummer bildet er.
+* Legg en lenke rundt bildene som vises, som lenker til det man har søkt på pluss hvilket nummer bildet er.
   * F. eks. href="/bekk/0", href="/bekk/1" osv.
 * Når et bilde klikkes på, hijack eventet og bruk pushstate til å oppdatere URL
-* I routeren, sørg for at bare bildet med riktig nummer vises om URLen inneholder et nummer etter søkestrengen
+* I routeren, vis bare bildet med riktig index om det ligger en index i URL
   * Om `<figure>` får klassen `fullwidth` får bildet automatisk riktig styling.
 
-## Bonus
-* Åpne developer tools og så network fanen og se på kallene som går til serveren når du gjør forskjellige handlinger.
-* Er det noen kall som kunne vært unngått?
-* F. eks. når man har søkt på bekk og trykker på et bilde, gjøres det et nytt søk på bekk?
-    * Prøv å unngå det ekstra søket
 
 
 ---
