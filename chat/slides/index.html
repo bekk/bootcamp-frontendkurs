@@ -65,7 +65,7 @@ Kan lese ut og endre forskjellige verdier
 var inputText = el2.value; // henter ut verdien i input-felt
 el2.value = 'heihei'; // setter verdien
 
-var el2.disabled = true; // disabler input-felt, knapp e.l.
+el2.disabled = true; // disabler input-felt, knapp e.l.
 
 var htmlInnhold = el1.innerHTML; // leser ut html fra et element
 el1.innerHTML = '<b>fet skrift</b>'; // setter innholdet til et element
@@ -806,12 +806,11 @@ Denne hackingen vil ikke fungere her, da chatte-serveren tar hensyn til dette. M
 Sjekk ut index.js filen og chat.js. Det meste ligner, bortsett fra at APIet for websockets er litt annerledes enn
 i en nettleser, og vi her må holde styr på flere tilkoblinger samtidig.
 
-* Forslag til ting å gjøre videre
- * Endre på stylingen, f. eks. få den til å ligne mer på andre chatte-programmer som Slack og Messenger. Der kommer nyeste
-meldinger nederst og man scrolles automatisk ned til nyeste melding, meldingsboksen ligger i bunn.
- * Endre visningen av tidspunkt til å være "For 32 sekunder siden", "For 5 minutter siden" osv.
- * Dine egne idéer.
- * Se på en av de andre oppgavene
+## Bonus
+  * Design, få chatten til å se ut som Slack eller lignende, med meldingsfeltet i bunn og nye meldinger kommer nederst i en boks som kan scrolles.
+  * Emoji-tastatur, en knapp man kan trykke på som popper opp en liten boks der man kan velge unicode som blir satt inn i tekst-feltet
+  * Uleste, få fanen i nettleseren til å vise at man har uleste meldinger om brukeren ikke har fanen synlig. (tips: window.onblur og window.onfocus)
+  * Dine egne idéer.
 
 ---
 
