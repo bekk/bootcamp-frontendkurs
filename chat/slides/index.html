@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Webutvikling 101</title>
+    <title>Slides - Chat</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/bekk/remark/master/dist/bekk.css">
     <link rel="stylesheet" href="slides.css">
   </head>
@@ -11,7 +11,7 @@
 
 class: front-page
   # Webutvikling 101
-  ## DEL 3<br>Chatteoppgave<br><br>Mats Krüger Svensson
+  ## <br>Chatteoppgave<br><br>Mats Krüger Svensson
 
 ---
 #Introduksjon
@@ -80,7 +80,6 @@ Man legger til en funksjon som vil bli kalt når et event inntreffer
 
 ```
 document.querySelector(`#minForm`).addEventListener('submit', function(event) {
-    event.preventDefault();
     // gjør noe ved submit
 });
 ```
@@ -126,7 +125,7 @@ document.querySelector('#nameform').addEventListener('submit', function (event) 
 
 # WebSockets Intro
 
-Forrige kursdag brukte vi `fetch` for å søke etter bilder. Det å kalle fetch førte til en http-request til en server,
+Vi har brukt `fetch` for å søke etter bilder tidligere. Det å kalle fetch førte til en http-request til en server,
 som så svarte med en liste over bilder. Http fungerer alltid på denne måten, ved at klienten gjør et kall mot serveren og får data tilbake.
 Serveren kan aldri sende data til klienten uten at klienten har sendt en request først.
 
@@ -134,7 +133,7 @@ Skal man lage en chat, er dette ikke helt optimalt. Eneste måten å få nye mel
 chat der nye meldinger dukker opp med en gang, må man regelrett spamme serveren med requests. Er det mange brukere som gjør dette samtidig vil
 serveren fort krasje.
 
-Websockets, derimot, er en toveis protokoll. Etter at en tilkobling er opprettet, kan både klient og server sende data til hverandre når de ønsker.
+Websockets, derimot, er en toveis protokoll. Etter at en tilkobling er opprettet kan både klient og server sende data til hverandre når de ønsker.
 Det gir mulighet for real-time applikasjoner som chat, spill osv.
 
 ---
@@ -219,7 +218,7 @@ For å sette navn, skal typen være `name`. I tillegg må man sende med navnet m
  * Objektet må være på formen fra forrige slide
  * Huske å gjøre objektet om til en tekst-streng før det sendes
 
-I denne oppgaven får man ikke et synlig resultat, men det kommer straks. Sjekk i console at ingen ting krasjer før du går videre.
+Sjekk på http://bekk-chat.herokuapp.com/ at brukeren har joinet riktig.
 
 ---
 class: center middle
@@ -785,7 +784,7 @@ function renderMessage(message) {
 ```]
 
 ---
-# Bonus: Sikkerhet
+# Litt å tenke på: Sikkerhet
 
 I denne oppgaven har vi tatt beskjeder fra andre brukere og puttet rett i HTMLen, kan du se hvorfor det kan være farlig?
 
@@ -798,26 +797,88 @@ Det er kanskje ikke så farlig, men hva om man skriver: `<script>alert('WARNING'
 så kjøres faktisk den koden også når den dyttes inn i HTMLen! Så da kan ondsinnede brukere faktisk sende kode
 via chat som vil kjøres på andres maskiner. Dette er et typisk "XSS"-angrep.
 
-Denne hackingen vil ikke fungere her, da chatte-serveren tar hensyn til dette. Men det er noe å være obs på, aldri stol på brukerdata.
+Denne hackingen vil ikke fungere her (forhåpentligvis), da chatte-serveren tar hensyn til dette.
+Men det er noe å være obs på, aldri stol på brukerdata, det må "vaskes" før det vises på siden.
+
 ---
-#Ferdig!
+
+class: center middle
+
+#Videre oppgaver
+
+## Gjøres i valgfri rekkefølge
+
+---
+
+# 1: Layout
+
+* Få chatten til å se mere ut som Slack eller tilsvarende chatte-applikasjoner. Altså:
+ * Nye meldinger kommer nederst, uten at brukeren må scrolle ned hele tiden
+ * Meldings-inputen ligger i bunn av siden
+ * Layouten fungerer selv om man justerer høyden/bredden på vinduet
+
+
+---
+
+# 2: Emoji-tastatur
+
+* Legg til en knapp, som når trykkes på åpner/lukker en boks som ligger absolutt posisjonert
+* Denne boksen inneholder smileyer (enten :) ;) osv. evt. unicode som 👍👊💪)
+* Når man trykker på en smiley, blir den satt inn bakerst i teksten.
+* Utvid funksjonaliteten, slik at smileyen blir satt inn der man sist hadde markøren (den blinkende |) i tekstfeltet
+* Prøv å posisjonere knappen som åpner smiley-boksen over input-feltet, som på Slack
+
+## Tips
+* [Classlist](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) på et DOM-element lar en legge til/fjerne
+klasser, nyttig for å skjule/vise ting
+* Kan lese ut markør-posisjonen vha `selectionStart` på et input-element.
+
+
+---
+
+# 3: Antall uleste
+
+<img src="uleste.png" />
+
+* Når brukeren ikke har chatte-fanen synlig, vis i fane-tittelen om det er uleste meldinger
+* Endre tilbake til original tittel når fanen blir aktiv
+
+
+* Tips: window.onblur, window.onfocus, document.title
+
+---
+
+# 4: Favicon / notifications
+(gjør nr 3 først)
+
+<img src="favicon.png" />
+
+* Lag et favicon med nettsiden under, navngi det favicon-normal.ico og legg det i client mappen
+* Legg til html-snutten under i head-delen av htmlen, da skal du se iconet i nettleseren
+* Lag et nytt ikon som blir vist ved uleste meldinger
+* Lag enda et ikon, som vises om en av de uleste meldingene inneholdt navnet du joinet med
+
+## Tips
+ * http://www.favicon.cc/ for å lage ikoner
+ * `<link rel="shortcut icon" href="favicon-normal.ico" type="image/x-icon" id="icon"/>`
+ * Da kan du hente ut favicon-elementet vha id, og endre href-verdien til et annet ikon
+
+---
+
+# 5: Fritt vilt
+
+* Noe annet du synes appen trenger?
+
+---
+
+# Backend
 
 * Er du interessert i å se hvordan serveren er laget, kan du [se her](https://github.com/Matsemann/ws-chat).
 Sjekk ut index.js filen og chat.js. Det meste ligner, bortsett fra at APIet for websockets er litt annerledes enn
 i en nettleser, og vi her må holde styr på flere tilkoblinger samtidig.
 
-## Bonus
-  * Design, få chatten til å se ut som Slack eller lignende, med meldingsfeltet i bunn og nye meldinger kommer nederst i en boks som kan scrolles.
-  * Emoji-tastatur, en knapp man kan trykke på som popper opp en liten boks der man kan velge unicode som blir satt inn i tekst-feltet
-  * Uleste, få fanen i nettleseren til å vise at man har uleste meldinger om brukeren ikke har fanen synlig. (tips: window.onblur og window.onfocus)
-  * Dine egne idéer.
-
----
 
 
-class: center middle bekk-top
-
-# Takk for oss!
 
     </textarea>
     <script src="https://cdn.rawgit.com/bekk/remark/master/vendor/remark.min.js" type="text/javascript"></script>
