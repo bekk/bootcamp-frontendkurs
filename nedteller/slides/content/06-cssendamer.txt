@@ -48,7 +48,7 @@ Om likt: <b>Den siste regelen i fila vinner</b>
 # Specificity eksempel
 
 ```css
-ul .favorite {
+li.favorite {
   color: red;
 }
 
@@ -59,9 +59,31 @@ ul li {
 
 ```html
 <ul>
-    <li>Rød</li>
+    <li>Blå</li>
+    <li class="favorite">Rød</li>
+    <li>Blå</li>
+</ul>
+```
+
+---
+
+# Specificity eksempel 2
+
+```css
+li.favorite {
+  color: red;
+}
+
+#minListe li {
+  color: blue;
+}
+```
+
+```html
+<ul id="minListe">
+    <li>Blå</li>
     <li class="favorite">Blå</li>
-    <li>Rød</li>
+    <li>Blå</li>
 </ul>
 ```
 
