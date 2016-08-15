@@ -5,15 +5,15 @@ function getAnnonser() {
 }
 
 getAnnonser().then(function (annonser) {
-    for (var i = 0; i < annonser.length; i++) {
-        lagAnnonseHtml(annonser[i]);
-    }
+   var annonseHtml = annonser.map((annonse) => lagAnnonseHtml(annonse));
+
+    document.querySelector(".annonse-container").innerHTML = annonseHtml.join("");
+
+
 });
 
 function lagAnnonseHtml(annonse) {
-    var opprinneligInnhold = document.querySelector(".annonse-container").innerHTML;
-
-    var nyAnnonseHtml =
+    return (
         `<div class="annonse">
             <div class="img-container">
                 ${lagBilderHtml(annonse)}
@@ -31,23 +31,14 @@ function lagAnnonseHtml(annonse) {
                     </h2>
                 <p class="adr">${annonse.details.adresse}</p>
             </div>
-        </div>`;
-
-    document.querySelector(".annonse-container").innerHTML = opprinneligInnhold + nyAnnonseHtml;
-
+        </div>`);
 }
 
 function lagBilderHtml(annonse) {
-    var bildehtml = "";
-
-    for (var i = 0; i < annonse.url.length; i++) {
-        var klasse = "bilde ";
-        if (i > 0) {
-            klasse = klasse + "hidden";
-        }
-        bildehtml += `<img class="${klasse}" src="/${annonse.url[i]}" alt="bilde av en annonse"/>`
-    }
-    return bildehtml;
+    return annonse.url.map((bildeurl, index) => {
+        var klasse = index > 0 ? "hidden" : "";
+        return `<img class="bilde ${klasse}" src="/${bildeurl}" alt="bilde av en annonse"/>`
+    }).join("");
 }
 
 var annonseContainer = document.querySelector('.annonse-container');
